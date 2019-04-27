@@ -36,8 +36,12 @@ int main()
 		{
 			grid_upper[i][j] = (rand() % 9) + 12;
 
-			if (rand() % 5 == 0) { grid_under[i][j] = 9; }
-			else { grid_under[i][j] = 0; }
+			//the first if makes it so there are no mines at the top middle
+			//giving the player a starting point
+			if (i < 6 && j != 1 || i > 10 && j != 1 || i < 7 && j > 2 || i > 9 && j > 2) {
+				if (rand() % 5 == 0) { grid_under[i][j] = 9; }
+				else { grid_under[i][j] = 0; }
+			}
 		}
 
 	/*
@@ -63,13 +67,12 @@ int main()
 				to each individual block so we need to change the number
 				presented in each triangle
 			*/
-			if (i % 2 != 0) {
+			if (i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
 				if (grid_under[i - 2][j] == 9) n++;
 				if (grid_under[i + 2][j] == 9) n++;
 				if (grid_under[i - 2][j + 1] == 9) n++;
 				if (grid_under[i + 2][j + 1] == 9) n++;
-			}
-			else {
+			}else if(i % 2 == 0 && j % 2 != 0 || i % 2 != 0 && j % 2 == 0) {
 				if (grid_under[i - 2][j] == 9) n++;
 				if (grid_under[i + 2][j] == 9) n++;
 				if (grid_under[i - 2][j - 1] == 9) n++;
@@ -98,7 +101,7 @@ int main()
 			}
 		}
 
-		app.clear(Color::Cyan);
+		app.clear(Color::Black);
 		for (int i = 1; i <= 15; i++)
 			for (int j = 1; j <= 20; j++)
 			{
@@ -173,13 +176,25 @@ int main()
 						Triangle.setPosition(i * tile_width, j * tile_width);
 						app.draw(Triangle);
 					}else if (i % 2 == 0 && j % 2 != 0) {
-						Triangle.setTextureRect(IntRect(grid_upper[i][j] * tile_width, 0, tile_width, tile_width));
-						Triangle.setTexture(&upper, false);
-						Triangle.setPoint(0, Vector2f(16, 32));
-						Triangle.setPoint(1, Vector2f(-16, 0));
-						Triangle.setPoint(2, Vector2f(48, 0));
-						Triangle.setPosition(i* tile_width, j * tile_width);
-						app.draw(Triangle);
+						//To show the starting point to the player at the top middle which is i = 8 and j = 1
+						if (i == 8 && j == 1) {
+							Triangle.setTextureRect(IntRect(grid_under[i][j] * tile_width, 0, tile_width, tile_width));
+							Triangle.setTexture(&under, false);
+							Triangle.setPoint(0, Vector2f(16, 32));
+							Triangle.setPoint(1, Vector2f(-16, 0));
+							Triangle.setPoint(2, Vector2f(48, 0));
+							Triangle.setPosition(i* tile_width, j* tile_width);
+							app.draw(Triangle);
+						}
+						else {
+							Triangle.setTextureRect(IntRect(grid_upper[i][j] * tile_width, 0, tile_width, tile_width));
+							Triangle.setTexture(&upper, false);
+							Triangle.setPoint(0, Vector2f(16, 32));
+							Triangle.setPoint(1, Vector2f(-16, 0));
+							Triangle.setPoint(2, Vector2f(48, 0));
+							Triangle.setPosition(i * tile_width, j * tile_width);
+							app.draw(Triangle);
+						}
 					}else if (i % 2 != 0 && j % 2 == 0) {
 						Triangle.setTextureRect(IntRect(grid_upper[i][j] * tile_width, 0, tile_width, tile_width));
 						Triangle.setTexture(&upper, false);
