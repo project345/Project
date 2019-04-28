@@ -1,0 +1,177 @@
+#include <SFML/Graphics.hpp>
+#include <time.h>
+
+using namespace sf;
+
+int main()
+{
+	srand(time(0));
+
+	RenderWindow app(VideoMode(544, 704), "Minesweeper!", Style::Titlebar | Style::Close);
+
+	int tile_width = 32;
+
+	int grid_under[17][22];
+	int grid_upper[17][22];
+
+	Texture under;
+	Texture upper;
+
+	under.loadFromFile("Pictures/tiles.jpg");
+	upper.loadFromFile("Pictures/desert.jpg");
+
+	//Sprite hidden(under);
+	//Sprite surface(upper);
+
+	ConvexShape Triangle(3);
+
+	/*
+		The first part randomly puts a section of desert.jpg to the tile.
+		Next part decides randomly 1/5 times whether to
+		put a mine in the current tile.
+	*/
+	for (int i = 1; i <= 15; i++)
+		for (int j = 1; j <= 20; j++)
+		{
+			grid_upper[i][j] = (rand() % 9) + 12;
+
+			//the first if makes it so there are no mines at the top middle
+			//giving the player a starting point
+			if (i < 6 && j != 1 || i > 10 && j != 1 || i < 7 && j > 2 || i > 9 && j > 2) {
+				if (rand() % 5 == 0) { grid_under[i][j] = 9; }
+				else { grid_under[i][j] = 0; }
+			}
+		}
+
+	/*
+		This calculates how many mines are beside the current tile,
+		giving the tile the proper number.
+	*/
+	for (int i = 1; i <= 15; i++)
+		for (int j = 1; j <= 20; j++)
+		{
+			int n = 0;
+			if (grid_under[i][j] == 9) continue;
+			if (grid_under[i + 1][j] == 9) n++;
+			if (grid_under[i][j + 1] == 9) n++;
+			if (grid_under[i - 1][j] == 9) n++;
+			if (grid_under[i][j - 1] == 9) n++;
+			if (grid_under[i + 1][j + 1] == 9) n++;
+			if (grid_under[i - 1][j - 1] == 9) n++;
+			if (grid_under[i - 1][j + 1] == 9) n++;
+			if (grid_under[i + 1][j - 1] == 9) n++;
+			/*
+				Below are needed for the triangle minesweeper
+				Triangle minesweeper has more blocks connected
+				to each individual block so we need to change the number
+				presented in each triangle
+			*/
+			if (i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
+				if (grid_under[i - 2][j] == 9) n++;
+				if (grid_under[i + 2][j] == 9) n++;
+				if (grid_under[i - 2][j + 1] == 9) n++;
+				if (grid_under[i + 2][j + 1] == 9) n++;
+			}
+			else if (i % 2 == 0 && j % 2 != 0 || i % 2 != 0 && j % 2 == 0) {
+				if (grid_under[i - 2][j] == 9) n++;
+				if (grid_under[i + 2][j] == 9) n++;
+				if (grid_under[i - 2][j - 1] == 9) n++;
+				if (grid_under[i + 2][j - 1] == 9) n++;
+			}
+			grid_under[i][j] = n;
+		}
+
+	while (app.isOpen())
+	{
+		Vector2i pos = Mouse::getPosition(app);
+
+		int x = pos.x / tile_width;
+		int y = pos.y / tile_width;
+
+		int x0, x1, x2, y0, y1, y2;
+
+		Event e;
+
+		while (app.pollEvent(e))
+		{
+			if (e.type == Event::Closed) { app.close(); }
+
+			if (e.type == Event::MouseButtonPressed)
+			{
+				grid_upper[x][y] = 0; //If tile is clicked, it being 0 will later mean it will display texture underneath.
+				if (e.key.code == Mouse::Right) grid_under[x][y] = 11;
+			}
+		}
+
+		app.clear(Color::Black);
+		for (int i = 1; i <= 15; i++)
+			for (int j = 1; j <= 20; j++)
+			{
+				//If tile underneath is 9 then it is a mine, and upper grid == 0, hence will show all 
+				//Tiles underneath the surface texture, ending the game
+				if (grid_under[x][y] == 9 && grid_upper[x][y] == 0) { grid_upper[i][j] = 0; }
+
+				//Will draw texture underneath
+				if (grid_upper[i][j] == 0)
+				{
+					/*hidden.setTextureRect(IntRect(grid_under[i][j] * tile_width, 0, tile_width, tile_width));
+					hidden.setPosition(i * tile_width, j * tile_width);
+					app.draw(hidden);*/
+
+					/*
+						For triangle below(hidden surface texture with numbers and shit):
+						for squares, it is commented above
+					*/
+					if (i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
+						x0 = 16, y0 = 0, x1 = -16, y1 = 32, x2 = 48, y2 = 32;
+					}
+					else if (i % 2 == 0 && j % 2 != 0 || i % 2 != 0 && j % 2 == 0) {
+						x0 = 16, y0 = 32, x1 = -16, y1 = 0, x2 = 48, y2 = 0;
+					}
+
+					Triangle.setTextureRect(IntRect(grid_under[i][j] * tile_width, 0, tile_width, tile_width));
+					Triangle.setTexture(&under, false);
+					Triangle.setPoint(0, Vector2f(x0, y0));
+					Triangle.setPoint(1, Vector2f(x1, y1));
+					Triangle.setPoint(2, Vector2f(x2, y2));
+					Triangle.setPosition(i* tile_width, j* tile_width);
+					app.draw(Triangle);
+				}
+				//Else will just draw surface texture
+				else {
+					/*surface.setTextureRect(IntRect(grid_upper[i][j] * tile_width, 0, tile_width, tile_width));
+					surface.setPosition(i * tile_width, j * tile_width);
+					app.draw(surface);*/
+
+					/*
+						For triangle below(surface texture:
+						for squares, it is commented above
+					*/
+					if (i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
+						x0 = 16, y0 = 0, x1 = -16, y1 = 32, x2 = 48, y2 = 32;
+						Triangle.setTextureRect(IntRect(grid_upper[i][j] * tile_width, 0, tile_width, tile_width));
+						Triangle.setTexture(&upper, false);
+					}
+					else if (i % 2 == 0 && j % 2 != 0 || i % 2 != 0 && j % 2 == 0) {
+						x0 = 16, y0 = 32, x1 = -16, y1 = 0, x2 = 48, y2 = 0;
+						if (i == 8 && j == 1) {
+							Triangle.setTexture(&under, false);
+							Triangle.setTextureRect(IntRect(grid_under[i][j] * tile_width, 0, tile_width, tile_width));
+						}
+						else {
+							Triangle.setTexture(&upper, false);
+							Triangle.setTextureRect(IntRect(grid_upper[i][j] * tile_width, 0, tile_width, tile_width));
+						}
+					}
+
+					Triangle.setPoint(0, Vector2f(x0, y0));
+					Triangle.setPoint(1, Vector2f(x1, y1));
+					Triangle.setPoint(2, Vector2f(x2, y2));
+					Triangle.setPosition(i* tile_width, j* tile_width);
+					app.draw(Triangle);
+				}
+			}
+		app.display();
+	}
+	return 0;
+}
