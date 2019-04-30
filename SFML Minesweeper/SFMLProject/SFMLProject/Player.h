@@ -8,6 +8,7 @@ namespace StewartGames
 		Player();
 		void Init();
 
+		void PrintTileArray();
 		void MovePlayerDown();
 		void MovePlayerUp();
 		void MovePlayerLeft();

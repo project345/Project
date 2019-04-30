@@ -14,8 +14,6 @@ namespace StewartGames
 
 		void Init();
 
-		void PrintTileArray();
-
 		void HandleInput();
 		void Update(float dt);
 		void Draw(float dt);

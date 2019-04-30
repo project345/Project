@@ -24,23 +24,10 @@ namespace StewartGames
 				_tiles[i][j] = 0;
 			}
 		}
-
-		PrintTileArray();
-
+		this->_player = Player();
+		_player.Init();
 		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
 		
-	}
-
-	void GameState::PrintTileArray() {
-		std::cout << std::endl << std::endl;
-		for (int x = 0; x < 5; x++)
-		{
-			for (int y = 0; y < 5; y++)
-			{
-				std::cout << _tiles[x][y] << " ";
-			}
-			std::cout << std::endl;
-		}
 	}
 
 	void GameState::HandleInput()
@@ -56,9 +43,18 @@ namespace StewartGames
 
 			if (event.type == sf::Event::KeyPressed)
 			{
-				if (event.key.code == sf::Keyboard::S)
+				if (event.key.code == sf::Keyboard::W)
 				{
-					
+					_player.MovePlayerUp();
+				}
+				if (event.key.code == sf::Keyboard::S) {
+					_player.MovePlayerDown();
+				}
+				if (event.key.code == sf::Keyboard::A) {
+					_player.MovePlayerLeft();
+				}
+				if (event.key.code == sf::Keyboard::D) {
+					_player.MovePlayerRight();
 				}
 			}
 		}
