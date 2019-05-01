@@ -15,3 +15,4 @@
 #define PLAYER_WALKING "Resources/res/walking.png"
 
 #define GRID_SIZE 5
+#define MOVE_SPEED 2

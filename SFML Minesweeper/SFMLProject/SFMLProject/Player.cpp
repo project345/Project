@@ -49,7 +49,8 @@ namespace StewartGames
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
 			_playerSprite.move(0, SCREEN_HEIGHT / 10);
-			_playerSprite.setTextureRect(sf::IntRect(0, 0, 24, 32));
+			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 0, 24, 32));
+			CounterWalking();
 		}
 	}
 
@@ -60,7 +61,8 @@ namespace StewartGames
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
 			_playerSprite.move(0, -(SCREEN_HEIGHT / 10));
-			_playerSprite.setTextureRect(sf::IntRect(0, 32, 24, 32));
+			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 32, 24, 32));
+			CounterWalking();
 		}
 	}
 
@@ -71,7 +73,8 @@ namespace StewartGames
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
 			_playerSprite.move(-(SCREEN_HEIGHT / 10), 0);
-			_playerSprite.setTextureRect(sf::IntRect(0, 64, 24, 32));
+			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 64, 24, 32));
+			CounterWalking();
 		}
 	}
 
@@ -82,7 +85,15 @@ namespace StewartGames
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
 			_playerSprite.move(SCREEN_HEIGHT / 10, 0);
-			_playerSprite.setTextureRect(sf::IntRect(0, 96, 24, 32));
+			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 96, 24, 32));
+			CounterWalking();
+		}
+	}
+
+	void Player::CounterWalking() {
+		_counterWalking++;
+		if (_counterWalking == 7) {
+			_counterWalking = 0;
 		}
 	}
 

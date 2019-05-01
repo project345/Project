@@ -17,6 +17,7 @@ namespace StewartGames
 		void MovePlayerLeft();
 		void MovePlayerRight();
 
+		void CounterWalking();
 		void Draw();
 
 	private:
@@ -26,6 +27,8 @@ namespace StewartGames
 
 		int _xPosition;
 		int _yPosition;
+
+		int _counterWalking = 0;
 
 		sf::Sprite _playerSprite;
 	};
