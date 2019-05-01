@@ -6,11 +6,6 @@
 namespace StewartGames
 {
 	Player::Player(GameDataRef data) : _data(data) {
-
-	}
-
-	void Player::Init() {
-				
 		_playerPosInArray = new int*[GRID_SIZE];
 		for (int i = 0; i < GRID_SIZE; i++) {
 			_playerPosInArray[i] = new int[GRID_SIZE];
@@ -18,7 +13,7 @@ namespace StewartGames
 				_playerPosInArray[i][j] = 0; // 0 for Empty space
 			}
 		}
-		
+
 		_xPosition = 0;
 		_yPosition = 0;
 		_playerPosInArray[0][0] = 1; // 1 for player in that space

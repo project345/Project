@@ -28,7 +28,6 @@ namespace StewartGames
 			}
 		}
 		_player = new Player(_data);
-		_player->Init();
 
 		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
 

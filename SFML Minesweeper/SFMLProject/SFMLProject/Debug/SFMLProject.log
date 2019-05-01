@@ -1,2 +1,8 @@
-﻿  Player.cpp
+﻿  GameOverState.cpp
+  GameState.cpp
+  MainMenuState.cpp
+  Player.cpp
+  SplashState.cpp
+  main.cpp
+  Generating Code...
   SFMLProject.vcxproj -> C:\Users\maxst\Desktop\COSC345Repo\SFML Minesweeper\SFMLProject\Debug\SFMLProject.exe

@@ -9,7 +9,6 @@ namespace StewartGames
 	{
 	public:
 		Player(GameDataRef data);
-		void Init();
 
 		void PrintTileArray();
 		void MovePlayerDown();
