@@ -12,3 +12,6 @@
 
 #define GAME_TITLE_FILEPATH "Resources/res/title.png"
 #define PLAY_BUTTON_FILEPATH "Resources/res/PlayButton.png"
+#define PLAYER_WALKING "Resources/res/walking.png"
+
+#define GRID_SIZE 5
