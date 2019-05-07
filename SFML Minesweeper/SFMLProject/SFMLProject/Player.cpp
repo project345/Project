@@ -43,9 +43,20 @@ namespace StewartGames
 			_yPosition += 1;
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
-			_playerSprite.move(0, SCREEN_HEIGHT / 10);
-			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 0, 24, 32));
-			CounterWalking();
+			sf::Vector2f newPos = _playerSprite.getPosition();
+			newPos.y += 50;
+			
+			isMoving = true;
+			offsetY = 50;
+			offsetX = 0;
+			originalPosition = _playerSprite.getPosition();
+
+			/*while (_playerSprite.getPosition() != newPos) {
+				_playerSprite.move(0, 1); // need to time by speed and time (dt) maybe move to update
+				_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 0, 24, 32));
+				CounterWalking();
+				std::cout << "WORKING ";
+			}*/
 		}
 	}
 
@@ -94,5 +105,20 @@ namespace StewartGames
 
 	void Player::Draw() {
 		this->_data->window.draw(_playerSprite);
+	}
+
+	void Player::Move(float dt) {
+		
+		sf::Vector2f currentPos = _playerSprite.getPosition();
+		sf::Vector2f targetPos = originalPosition + sf::Vector2f(offsetX, offsetY);
+		
+		if (currentPos == targetPos) {
+			isMoving = false;
+		}
+		if (isMoving && currentPos.y <= targetPos.y) {
+			_playerSprite.move(offsetX * dt, offsetY * dt);
+			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 0, 24, 32));
+			CounterWalking();
+		}
 	}
 }

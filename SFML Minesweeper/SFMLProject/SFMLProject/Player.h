@@ -19,6 +19,8 @@ namespace StewartGames
 		void CounterWalking();
 		void Draw();
 
+		void Move(float dt);
+
 	private:
 		GameDataRef _data;
 		
@@ -28,6 +30,11 @@ namespace StewartGames
 		int _yPosition;
 
 		int _counterWalking = 0;
+		bool isMoving;
+
+		int offsetX;
+		int offsetY;
+		sf::Vector2f originalPosition;
 
 		sf::Sprite _playerSprite;
 	};

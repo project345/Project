@@ -49,7 +49,6 @@ namespace StewartGames
 				if (event.key.code == sf::Keyboard::W)
 				{
 					_player->MovePlayerUp();
-					
 				}
 				if (event.key.code == sf::Keyboard::S) {
 					_player->MovePlayerDown();
@@ -66,7 +65,7 @@ namespace StewartGames
 
 	void GameState::Update(float dt)
 	{
-	
+		_player->Move(dt);
 	}
 
 	void GameState::Draw(float dt)

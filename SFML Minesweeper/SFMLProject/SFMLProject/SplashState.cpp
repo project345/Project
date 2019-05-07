@@ -3,6 +3,7 @@
 #include <sstream>
 #include "SplashState.h"
 #include "MainMenuState.h"
+#include "GameState.h"
 #include "DEFINITIONS.h"
 
 #include <iostream>
@@ -18,7 +19,7 @@ namespace StewartGames
 	{
 		this->_data->assets.LoadTexture("Splash State Background", SPLASH_SCENE_BACKGROUND_FILEPATH);
 
-		_background.setTexture(this->_data->assets.GetTexture("Splash State Background"));
+		//_background.setTexture(this->_data->assets.GetTexture("Splash State Background"));
 	}
 
 	void SplashState::HandleInput()
@@ -39,7 +40,8 @@ namespace StewartGames
 		if (this->_clock.getElapsedTime().asSeconds() > SPLASH_STATE_SHOW_TIME)
 		{
 			// Switch To Main Menu
-			_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+			//_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+			_data->machine.AddState(StateRef(new GameState(_data)), true);
 		}
 	}
 
