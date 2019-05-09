@@ -43,20 +43,12 @@ namespace StewartGames
 			_yPosition += 1;
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
-			sf::Vector2f newPos = _playerSprite.getPosition();
-			newPos.y += 50;
-			
+
+			spriteShown = 0;
 			isMoving = true;
 			offsetY = 50;
 			offsetX = 0;
 			originalPosition = _playerSprite.getPosition();
-
-			/*while (_playerSprite.getPosition() != newPos) {
-				_playerSprite.move(0, 1); // need to time by speed and time (dt) maybe move to update
-				_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 0, 24, 32));
-				CounterWalking();
-				std::cout << "WORKING ";
-			}*/
 		}
 	}
 
@@ -66,9 +58,12 @@ namespace StewartGames
 			_yPosition -= 1;
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
-			_playerSprite.move(0, -(SCREEN_HEIGHT / 10));
-			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 32, 24, 32));
-			CounterWalking();
+
+			spriteShown = 32;
+			isMoving = true;
+			offsetY = -50;
+			offsetX = 0;
+			originalPosition = _playerSprite.getPosition();
 		}
 	}
 
@@ -78,9 +73,12 @@ namespace StewartGames
 			_xPosition -= 1;
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
-			_playerSprite.move(-(SCREEN_HEIGHT / 10), 0);
-			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 64, 24, 32));
-			CounterWalking();
+
+			spriteShown = 64;
+			isMoving = true;
+			offsetY = 0;
+			offsetX = -50;
+			originalPosition = _playerSprite.getPosition();
 		}
 	}
 
@@ -90,9 +88,12 @@ namespace StewartGames
 			_xPosition += 1;
 			_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
-			_playerSprite.move(SCREEN_HEIGHT / 10, 0);
-			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 96, 24, 32));
-			CounterWalking();
+
+			spriteShown = 96;
+			isMoving = true;
+			offsetY = 0;
+			offsetX = 50;
+			originalPosition = _playerSprite.getPosition();
 		}
 	}
 
@@ -111,14 +112,14 @@ namespace StewartGames
 		
 		sf::Vector2f currentPos = _playerSprite.getPosition();
 		sf::Vector2f targetPos = originalPosition + sf::Vector2f(offsetX, offsetY);
-		
-		if (currentPos == targetPos) {
-			isMoving = false;
-		}
-		if (isMoving && currentPos.y <= targetPos.y) {
+		// Pythagoras to find vector difference
+		float distance = (sqrt(abs(((targetPos.x - currentPos.x) * (targetPos.x - currentPos.x)) + ((targetPos.y - currentPos.y) * (targetPos.y - currentPos.y)))));
+
+		if (isMoving && distance >= 0.2f) {
 			_playerSprite.move(offsetX * dt, offsetY * dt);
-			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, 0, 24, 32));
+			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, spriteShown, 24, 32));
 			CounterWalking();
 		}
+
 	}
 }

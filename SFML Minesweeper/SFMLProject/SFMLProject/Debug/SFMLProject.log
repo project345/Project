@@ -1,7 +1,11 @@
-﻿  Player.cpp
-c:\users\maxst\desktop\cosc345\sfml minesweeper\sfmlproject\sfmlproject\player.cpp(113): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+﻿  GameState.cpp
+  MainMenuState.cpp
+  Player.cpp
+c:\users\maxst\desktop\cosc345\sfml minesweeper\sfmlproject\sfmlproject\player.cpp(114): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
+  SplashState.cpp
+  Generating Code...
   SFMLProject.vcxproj -> C:\Users\maxst\Desktop\COSC345\SFML Minesweeper\SFMLProject\Debug\SFMLProject.exe

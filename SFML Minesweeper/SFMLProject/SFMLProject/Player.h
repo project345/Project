@@ -36,6 +36,8 @@ namespace StewartGames
 		int offsetY;
 		sf::Vector2f originalPosition;
 
+		int spriteShown;
+
 		sf::Sprite _playerSprite;
 	};
 }
