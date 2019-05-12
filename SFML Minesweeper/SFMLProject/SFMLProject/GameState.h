@@ -14,8 +14,6 @@ namespace StewartGames
 
 		void Init();
 
-		void PrintTileArray();
-
 		void HandleInput();
 		void Update(float dt);
 		void Draw(float dt);
@@ -27,12 +25,14 @@ namespace StewartGames
 
 		sf::Sprite _background;
 
-		Player _player;
+		Player *_player;
 
 		int** _tiles;
 
 		int currentXPos = 0;
 		int currentYPos = 1;
+
+		sf::Sprite spriteMain;
 
 	};
 }

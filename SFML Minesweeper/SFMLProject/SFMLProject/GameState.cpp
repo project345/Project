@@ -1,21 +1,24 @@
 #pragma once
 
 #include <sstream>
-#include "GameState.h"
 #include "DEFINITIONS.h"
+#include "GameState.h"
+
 
 #include <iostream>
 
 namespace StewartGames
 {
-	GameState::GameState(GameDataRef data) : _data(data)
-	{
+	GameState::GameState(GameDataRef data) : _data(data) {
 
 	}
 
 	void GameState::Init()
 	{
 		this->_data->assets.LoadTexture("Game Background", GAME_BACKGROUND_FILEPATH);
+		
+		this->_data->assets.LoadTexture("Play Button", PLAY_BUTTON_FILEPATH);
+
 		_tiles = new int*[5];
 		for (int i = 0; i < 5; i++) {
 			_tiles[i] = new int[5];
@@ -24,23 +27,10 @@ namespace StewartGames
 				_tiles[i][j] = 0;
 			}
 		}
-
-		PrintTileArray();
+		_player = new Player(_data);
 
 		_background.setTexture(this->_data->assets.GetTexture("Game Background"));
-		
-	}
 
-	void GameState::PrintTileArray() {
-		std::cout << std::endl << std::endl;
-		for (int x = 0; x < 5; x++)
-		{
-			for (int y = 0; y < 5; y++)
-			{
-				std::cout << _tiles[x][y] << " ";
-			}
-			std::cout << std::endl;
-		}
 	}
 
 	void GameState::HandleInput()
@@ -56,9 +46,18 @@ namespace StewartGames
 
 			if (event.type == sf::Event::KeyPressed)
 			{
-				if (event.key.code == sf::Keyboard::S)
+				if (event.key.code == sf::Keyboard::W)
 				{
-					
+					_player->MovePlayerUp();
+				}
+				if (event.key.code == sf::Keyboard::S) {
+					_player->MovePlayerDown();
+				}
+				if (event.key.code == sf::Keyboard::A) {
+					_player->MovePlayerLeft();
+				}
+				if (event.key.code == sf::Keyboard::D) {
+					_player->MovePlayerRight();
 				}
 			}
 		}
@@ -66,7 +65,7 @@ namespace StewartGames
 
 	void GameState::Update(float dt)
 	{
-	
+		_player->Move(dt);
 	}
 
 	void GameState::Draw(float dt)
@@ -74,7 +73,7 @@ namespace StewartGames
 		this->_data->window.clear(sf::Color::Red);
 
 		this->_data->window.draw(this->_background);
-
+		_player->Draw();
 		this->_data->window.display();
 	}
 }
