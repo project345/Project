@@ -1,7 +1,7 @@
-#include "DEFINITIONS.hpp";
-#include "iostream";
-#include "Game.hpp";
-#include "Player.hpp";
+#include "Game.hpp"
+#include "iostream"
+#include "DEFINITIONS.hpp"
+#include "Player.hpp"
 
 namespace Sarang {
 

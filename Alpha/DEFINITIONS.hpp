@@ -32,4 +32,8 @@
 
 #define RESTART_FILEPATH "suicide.jpg"
 
+#define PLAYER_WALKING "walking.png"
+
+#define GRID_SIZE 25
+
 

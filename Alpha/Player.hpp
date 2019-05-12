@@ -5,8 +5,7 @@
 
 namespace Sarang {
 
-	class Player
-	{
+	class Player {
 	public:
 		Player(GameDataRef data);
 
@@ -15,29 +14,21 @@ namespace Sarang {
 		void MovePlayerUp();
 		void MovePlayerLeft();
 		void MovePlayerRight();
-
 		void CounterWalking();
 		void Draw();
-
 		void Move(float dt);
 
 	private:
 		GameDataRef _data;
-
 		int** _playerPosInArray;
-
 		int _xPosition;
 		int _yPosition;
-
 		int _counterWalking = 0;
 		bool isMoving;
-
 		int offsetX;
 		int offsetY;
 		sf::Vector2f originalPosition;
-
 		int spriteShown;
-
 		sf::Sprite _playerSprite;
 	};
 

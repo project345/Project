@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
+#include "Player.hpp"
 
 namespace Sarang{
     class EasyState : public State{
@@ -34,5 +35,8 @@ namespace Sarang{
         int grid_upper[17][22];
         int grid_under[17][22];
         int x, y;
+
+		// Player
+		Player* _player;
     };
 }
