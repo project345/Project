@@ -17,6 +17,7 @@ namespace Sarang {
 		void CounterWalking();
 		void Draw();
 		void Move(float dt);
+		void SetPos(int x, int y);
 
 	private:
 		GameDataRef _data;

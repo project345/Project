@@ -69,6 +69,15 @@ namespace Sarang{
 				if (grid_under[i + 1][j - 1] == 9) n++;
 				grid_under[i][j] = n;
 			}
+		_player = new Player(_data);
+
+		// DEBUG Print
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 20; j++) {
+				std::cout << grid_under[i][j] << " ";
+			}
+			std::cout << std::endl;
+		}
     }
     
     void EasyState::HandleInput(){
@@ -80,45 +89,56 @@ namespace Sarang{
         
         while(_data->window.pollEvent(event)){
             
-			if(sf::Event::Closed == event.type){
+			if(sf::Event::Closed == event.type) {
                 _data->window.close();
             }
             
             if(this->_data->input.IsSpriteClicked(this->_restart, sf::Mouse::Left, this->_data->window)){
                 this->_data->machine.AddState(StateRef(new MainMenuState(_data)),true);
             }
-			if (event.type == sf::Event::MouseButtonPressed){
+			if (event.type == sf::Event::MouseButtonPressed) {
 				grid_upper[x][y] = 0; //If tile is clicked, it being 0 will later mean it will display texture underneath.
 				if (event.key.code == sf::Mouse::Right) grid_under[x][y] = 11;
+			}
+
+			if (event.type == sf::Event::KeyPressed) {
+				if (event.key.code == sf::Keyboard::W) {
+					_player->MovePlayerUp();
+				}
+				if (event.key.code == sf::Keyboard::S) {
+					_player->MovePlayerDown();
+				}
+				if (event.key.code == sf::Keyboard::A) {
+					_player->MovePlayerLeft();
+				}
+				if (event.key.code == sf::Keyboard::D) {
+					_player->MovePlayerRight();
+				}
 			}
         }        
     }       
     
-    void EasyState::Update(float dt){
-        
+    void EasyState::Update(float dt) {
+		_player->Move(dt);
     }
     
-    void EasyState::Draw(float dt){
+    void EasyState::Draw(float dt) {
         _data->window.clear(sf::Color::Magenta);
         
 		_data->window.draw(_background);
 
 		for (int i = 1; i <= 15; i++)
-			for (int j = 1; j <= 20; j++)
-			{
+			for (int j = 1; j <= 20; j++) {
 				//If tile underneath is 9 then it is a mine, and upper grid == 0, hence will show all 
 				//Tiles underneath the surface texture, ending the game
 				if (grid_under[x][y] == 9 && grid_upper[x][y] == 0) { grid_upper[i][j] = 0; }
 
 				//Will draw texture underneath
-				if (grid_upper[i][j] == 0)
-				{
+				if (grid_upper[i][j] == 0) {
 					_hidden.setTextureRect(sf::IntRect(grid_under[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
 					_hidden.setPosition((i + 1) * TILE_WIDTH, (j + 2) * TILE_WIDTH);
 					_data->window.draw(_hidden);
-				}
-				//Else will just draw surface texture
-				else {
+				} else { //Else will just draw surface texture
 					_surface.setTextureRect(sf::IntRect(grid_upper[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
 					_surface.setPosition((i + 1) * TILE_WIDTH, (j + 2) * TILE_WIDTH);
 					_data->window.draw(_surface);
@@ -126,7 +146,7 @@ namespace Sarang{
 			}
 		
 		_data->window.draw(_restart);
-
+		_player->Draw();
         _data->window.display();
     }
 }

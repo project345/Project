@@ -17,7 +17,7 @@ namespace Sarang {
 		_xPosition = 0;
 		_yPosition = 0;
 		_playerPosInArray[0][0] = 1; // 1 for player in that space
-
+		std::cout << "TILED ARRAY";
 		PrintTileArray();
 
 		sf::Texture texture;
@@ -25,6 +25,7 @@ namespace Sarang {
 		this->_data->assets.LoadTexture("Player", PLAYER_WALKING);
 		_playerSprite.setTexture(this->_data->assets.GetTexture("Player"));
 		_playerSprite.setTextureRect(sf::IntRect(0, 0, 24, 32));
+		_playerSprite.setPosition(2 * TILE_WIDTH + 5, 3 * TILE_WIDTH);
 	}
 
 	void Player::PrintTileArray() {
@@ -37,6 +38,10 @@ namespace Sarang {
 		}
 	}
 
+	void Player::SetPos(int x, int y) {
+		_playerSprite.setPosition(x, y);
+	}
+
 	void Player::MovePlayerDown() {
 		if (_yPosition < GRID_SIZE - 1) {
 			_playerPosInArray[_yPosition][_xPosition] = 0;
@@ -46,7 +51,7 @@ namespace Sarang {
 
 			spriteShown = 0;
 			isMoving = true;
-			offsetY = 50;
+			offsetY = TILE_WIDTH;
 			offsetX = 0;
 			originalPosition = _playerSprite.getPosition();
 		}
@@ -61,7 +66,7 @@ namespace Sarang {
 
 			spriteShown = 32;
 			isMoving = true;
-			offsetY = -50;
+			offsetY = -TILE_WIDTH;
 			offsetX = 0;
 			originalPosition = _playerSprite.getPosition();
 		}
@@ -77,7 +82,7 @@ namespace Sarang {
 			spriteShown = 64;
 			isMoving = true;
 			offsetY = 0;
-			offsetX = -50;
+			offsetX = -TILE_WIDTH;
 			originalPosition = _playerSprite.getPosition();
 		}
 	}
@@ -92,7 +97,7 @@ namespace Sarang {
 			spriteShown = 96;
 			isMoving = true;
 			offsetY = 0;
-			offsetX = 50;
+			offsetX = TILE_WIDTH;
 			originalPosition = _playerSprite.getPosition();
 		}
 	}
@@ -109,7 +114,7 @@ namespace Sarang {
 	}
 
 	void Player::Move(float dt) {
-
+	
 		sf::Vector2f currentPos = _playerSprite.getPosition();
 		sf::Vector2f targetPos = originalPosition + sf::Vector2f(offsetX, offsetY);
 		// Pythagoras to find vector difference
@@ -120,6 +125,5 @@ namespace Sarang {
 			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, spriteShown, 24, 32));
 			CounterWalking();
 		}
-
 	}
 }

@@ -34,6 +34,8 @@
 
 #define PLAYER_WALKING "walking.png"
 
-#define GRID_SIZE 25
+#define GRID_SIZE 20
+#define GRID_WIDTH 15
+#define GRID_HEIGHT 20
 
 
