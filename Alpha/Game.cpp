@@ -30,13 +30,16 @@ namespace Sarang{
             currentTime = newTime;
             accumulator += frameTime;
             
-            while(accumulator >= dt){
+            /*while(accumulator >= dt){
                 this->_data->machine.GetActiveState()->HandleInput();
                 this->_data->machine.GetActiveState()->Update(dt);
                 
                 accumulator -= dt;
-            }
+            }*/
             
+			this->_data->machine.GetActiveState()->HandleInput();
+			this->_data->machine.GetActiveState()->Update(dt);
+
             interpolation = accumulator/dt;
             this->_data->machine.GetActiveState()->Draw(interpolation);
         }

@@ -20,10 +20,6 @@
 
 #define MENU_IMAGE_FILEPATH "wall2.jpg"
 
-#define GRID_UPPER [17][22]
-
-#define GRID_UNDER [17][22]
-
 #define EASY_MAINMENU_FILEPATH "easy.png"
 
 #define MEDIUM_MAINMENU_FILEPATH "medium.png"

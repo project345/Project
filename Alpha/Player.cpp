@@ -6,10 +6,10 @@
 namespace Sarang {
 
 	Player::Player(GameDataRef data) : _data(data) {
-		_playerPosInArray = new int* [GRID_SIZE];
-		for (int i = 0; i < GRID_SIZE; i++) {
-			_playerPosInArray[i] = new int[GRID_SIZE];
-			for (int j = 0; j < GRID_SIZE; j++) {
+		_playerPosInArray = new int* [GRID_HEIGHT];
+		for (int i = 0; i < GRID_HEIGHT; i++) {
+			_playerPosInArray[i] = new int[GRID_WIDTH];
+			for (int j = 0; j < GRID_WIDTH; j++) {
 				_playerPosInArray[i][j] = 0; // 0 for Empty space
 			}
 		}
@@ -30,9 +30,9 @@ namespace Sarang {
 
 	void Player::PrintTileArray() {
 		std::cout << std::endl << std::endl;
-		for (int x = 0; x < GRID_SIZE; x++) {
-			for (int y = 0; y < GRID_SIZE; y++) {
-				std::cout << _playerPosInArray[x][y] << " ";
+		for (int y = 0; y < GRID_HEIGHT; y++) {
+			for (int x = 0; x < GRID_WIDTH; x++) {
+				std::cout << _playerPosInArray[y][x] << " ";
 			}
 			std::cout << std::endl;
 		}
@@ -43,7 +43,7 @@ namespace Sarang {
 	}
 
 	void Player::MovePlayerDown() {
-		if (_yPosition < GRID_SIZE - 1) {
+		if (_yPosition < GRID_HEIGHT - 1) {
 			_playerPosInArray[_yPosition][_xPosition] = 0;
 			_yPosition += 1;
 			_playerPosInArray[_yPosition][_xPosition] = 1;
@@ -88,7 +88,7 @@ namespace Sarang {
 	}
 
 	void Player::MovePlayerRight() {
-		if (_xPosition < GRID_SIZE - 1) {
+		if (_xPosition < GRID_WIDTH - 1) {
 			_playerPosInArray[_yPosition][_xPosition] = 0;
 			_xPosition += 1;
 			_playerPosInArray[_yPosition][_xPosition] = 1;
@@ -124,6 +124,9 @@ namespace Sarang {
 			_playerSprite.move(offsetX * dt, offsetY * dt);
 			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, spriteShown, 24, 32));
 			CounterWalking();
+		}
+		else {
+			isMoving = false;
 		}
 	}
 }

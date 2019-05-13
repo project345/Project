@@ -18,6 +18,7 @@ namespace Sarang {
 		void Draw();
 		void Move(float dt);
 		void SetPos(int x, int y);
+		bool isMoving;
 
 	private:
 		GameDataRef _data;
@@ -25,7 +26,6 @@ namespace Sarang {
 		int _xPosition;
 		int _yPosition;
 		int _counterWalking = 0;
-		bool isMoving;
 		int offsetX;
 		int offsetY;
 		sf::Vector2f originalPosition;

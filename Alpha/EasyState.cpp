@@ -101,7 +101,7 @@ namespace Sarang{
 				if (event.key.code == sf::Mouse::Right) grid_under[x][y] = 11;
 			}
 
-			if (event.type == sf::Event::KeyPressed) {
+			if (event.type == sf::Event::KeyPressed && _player->isMoving == false) {
 				if (event.key.code == sf::Keyboard::W) {
 					_player->MovePlayerUp();
 				}
