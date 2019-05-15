@@ -6,6 +6,7 @@
 namespace Sarang {
 
 	Player::Player(GameDataRef data, int gridUnder[][22]) : _data(data) {
+		// Old way of making the array NOT USED ANYMORE
 		//_playerPosInArray = new int* [GRID_HEIGHT];
 		/*for (int i = 0; i < GRID_HEIGHT; i++) {
 			_playerPosInArray[i] = new int[GRID_WIDTH];
@@ -23,7 +24,6 @@ namespace Sarang {
 
 		_xPosition = 1;
 		_yPosition = 1;
-		_playerPosInArray[0][0] = 1; // 1 for player in that space
 		std::cout << "TILED ARRAY";
 		//PrintTileArray();
 
@@ -49,14 +49,15 @@ namespace Sarang {
 		_playerSprite.setPosition(x, y);
 	}
 
-	void Player::CheckMove(int newX, int newY) {
+	int Player::CheckMove(int newX, int newY) {
 		// Check if the player has moved into a bomb surrounding player
-		if (_playerPosInArray[newX][newY] == 9) { std::cout << "BOMB"; }
+		if (_playerPosInArray[newX][newY] == 9) { std::cout << "BOMB"; return 3; }
+		return 0;
 	}
 
 	void Player::MovePlayerDown() {
-		if (_yPosition < GRID_HEIGHT - 1) {
-			CheckMove(_xPosition, _yPosition + 1);
+		if (_yPosition < GRID_HEIGHT) {
+			int result = CheckMove(_xPosition, _yPosition + 1);
 			//_playerPosInArray[_yPosition][_xPosition] = 0;
 			_yPosition += 1;
 			//_playerPosInArray[_yPosition][_xPosition] = 1;
@@ -71,8 +72,8 @@ namespace Sarang {
 	}
 
 	void Player::MovePlayerUp() {
-		if (_yPosition > 0) {
-			CheckMove(_xPosition, _yPosition - 1);
+		if (_yPosition > 1) {
+			int result = CheckMove(_xPosition, _yPosition - 1);
 			//_playerPosInArray[_yPosition][_xPosition] = 0;
 			_yPosition -= 1;
 			//_playerPosInArray[_yPosition][_xPosition] = 1;
@@ -87,8 +88,8 @@ namespace Sarang {
 	}
 
 	void Player::MovePlayerLeft() {
-		if (_xPosition > 0) {
-			CheckMove(_xPosition - 1, _yPosition);
+		if (_xPosition > 1) {
+			int result = CheckMove(_xPosition - 1, _yPosition);
 			//_playerPosInArray[_yPosition][_xPosition] = 0;
 			_xPosition -= 1;
 			//_playerPosInArray[_yPosition][_xPosition] = 1;
@@ -102,20 +103,22 @@ namespace Sarang {
 		}
 	}
 
-	void Player::MovePlayerRight() {
-		if (_xPosition < GRID_WIDTH - 1) {
-			CheckMove(_xPosition + 1, _yPosition);
+	int Player::MovePlayerRight() {
+		if (_xPosition < GRID_WIDTH) {
+			int result = CheckMove(_xPosition + 1, _yPosition);
 			//_playerPosInArray[_xPosition][_yPosition] = 0;
 			_xPosition += 1;
 			//_playerPosInArray[_xPosition][_yPosition] = -1;
-			PrintTileArray();
+			//PrintTileArray();
 
 			spriteShown = 96;
 			isMoving = true;
 			offsetY = 0;
 			offsetX = TILE_WIDTH;
 			originalPosition = _playerSprite.getPosition();
+			return result;
 		}
+		return 0;
 	}
 
 	void Player::CounterWalking() {

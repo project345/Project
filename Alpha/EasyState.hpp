@@ -15,6 +15,8 @@ namespace Sarang{
         void HandleInput();
         void Update(float dt);
         void Draw(float dt);
+
+		void RemoveUpperTile(int xPos, int yPos);
         
     private:
         GameDataRef _data;

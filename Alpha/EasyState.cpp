@@ -104,8 +104,10 @@ namespace Sarang{
 					_player->MovePlayerLeft();
 				}
 				if (event.key.code == sf::Keyboard::D) {
-					_player->MovePlayerRight();
+					int result = _player->MovePlayerRight();
+					std::cout << result;
 				}
+				
 			}
         }        
     }
@@ -141,6 +143,10 @@ namespace Sarang{
 		_player->Draw();
         _data->window.display();
     }
+
+	void EasyState::RemoveUpperTile(int xPos, int yPos) {
+		grid_upper[xPos][yPos] == 0;
+	}
 }
 
 

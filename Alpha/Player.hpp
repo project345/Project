@@ -13,12 +13,12 @@ namespace Sarang {
 		void MovePlayerDown();
 		void MovePlayerUp();
 		void MovePlayerLeft();
-		void MovePlayerRight();
+		int MovePlayerRight();
 		void CounterWalking();
 		void Draw();
 		void Move(float dt);
 		void SetPos(int x, int y);
-		void CheckMove(int newX, int newY);
+		int CheckMove(int newX, int newY); // 1 -> safe move, 2 -> number, 3 -> bomb
 		bool isMoving;
 
 	private:
