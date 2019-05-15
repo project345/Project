@@ -5,20 +5,27 @@
 
 namespace Sarang {
 
-	Player::Player(GameDataRef data) : _data(data) {
-		_playerPosInArray = new int* [GRID_HEIGHT];
-		for (int i = 0; i < GRID_HEIGHT; i++) {
+	Player::Player(GameDataRef data, int gridUnder[][22]) : _data(data) {
+		//_playerPosInArray = new int* [GRID_HEIGHT];
+		/*for (int i = 0; i < GRID_HEIGHT; i++) {
 			_playerPosInArray[i] = new int[GRID_WIDTH];
 			for (int j = 0; j < GRID_WIDTH; j++) {
 				_playerPosInArray[i][j] = 0; // 0 for Empty space
 			}
+		}*/
+
+		for (int i = 0; i <= 15; i++) {
+			for (int j = 0; j <= 20; j++)
+			{
+				_playerPosInArray[i][j] = gridUnder[i][j];
+			}
 		}
 
-		_xPosition = 0;
-		_yPosition = 0;
+		_xPosition = 1;
+		_yPosition = 1;
 		_playerPosInArray[0][0] = 1; // 1 for player in that space
 		std::cout << "TILED ARRAY";
-		PrintTileArray();
+		//PrintTileArray();
 
 		sf::Texture texture;
 		sf::IntRect rectSourceSprite(300, 0, 123, 123);
@@ -32,7 +39,7 @@ namespace Sarang {
 		std::cout << std::endl << std::endl;
 		for (int y = 0; y < GRID_HEIGHT; y++) {
 			for (int x = 0; x < GRID_WIDTH; x++) {
-				std::cout << _playerPosInArray[y][x] << " ";
+				std::cout << _playerPosInArray[x][y] << " ";
 			}
 			std::cout << std::endl;
 		}
@@ -42,11 +49,17 @@ namespace Sarang {
 		_playerSprite.setPosition(x, y);
 	}
 
+	void Player::CheckMove(int newX, int newY) {
+		// Check if the player has moved into a bomb surrounding player
+		if (_playerPosInArray[newX][newY] == 9) { std::cout << "BOMB"; }
+	}
+
 	void Player::MovePlayerDown() {
 		if (_yPosition < GRID_HEIGHT - 1) {
-			_playerPosInArray[_yPosition][_xPosition] = 0;
+			CheckMove(_xPosition, _yPosition + 1);
+			//_playerPosInArray[_yPosition][_xPosition] = 0;
 			_yPosition += 1;
-			_playerPosInArray[_yPosition][_xPosition] = 1;
+			//_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
 
 			spriteShown = 0;
@@ -59,9 +72,10 @@ namespace Sarang {
 
 	void Player::MovePlayerUp() {
 		if (_yPosition > 0) {
-			_playerPosInArray[_yPosition][_xPosition] = 0;
+			CheckMove(_xPosition, _yPosition - 1);
+			//_playerPosInArray[_yPosition][_xPosition] = 0;
 			_yPosition -= 1;
-			_playerPosInArray[_yPosition][_xPosition] = 1;
+			//_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
 
 			spriteShown = 32;
@@ -74,9 +88,10 @@ namespace Sarang {
 
 	void Player::MovePlayerLeft() {
 		if (_xPosition > 0) {
-			_playerPosInArray[_yPosition][_xPosition] = 0;
+			CheckMove(_xPosition - 1, _yPosition);
+			//_playerPosInArray[_yPosition][_xPosition] = 0;
 			_xPosition -= 1;
-			_playerPosInArray[_yPosition][_xPosition] = 1;
+			//_playerPosInArray[_yPosition][_xPosition] = 1;
 			PrintTileArray();
 
 			spriteShown = 64;
@@ -89,9 +104,10 @@ namespace Sarang {
 
 	void Player::MovePlayerRight() {
 		if (_xPosition < GRID_WIDTH - 1) {
-			_playerPosInArray[_yPosition][_xPosition] = 0;
+			CheckMove(_xPosition + 1, _yPosition);
+			//_playerPosInArray[_xPosition][_yPosition] = 0;
 			_xPosition += 1;
-			_playerPosInArray[_yPosition][_xPosition] = 1;
+			//_playerPosInArray[_xPosition][_yPosition] = -1;
 			PrintTileArray();
 
 			spriteShown = 96;

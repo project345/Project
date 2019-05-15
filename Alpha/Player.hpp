@@ -7,7 +7,7 @@ namespace Sarang {
 
 	class Player {
 	public:
-		Player(GameDataRef data);
+		Player(GameDataRef data, int gridUnder[][22]);
 
 		void PrintTileArray();
 		void MovePlayerDown();
@@ -18,11 +18,12 @@ namespace Sarang {
 		void Draw();
 		void Move(float dt);
 		void SetPos(int x, int y);
+		void CheckMove(int newX, int newY);
 		bool isMoving;
 
 	private:
 		GameDataRef _data;
-		int** _playerPosInArray;
+		int _playerPosInArray[17][22];
 		int _xPosition;
 		int _yPosition;
 		int _counterWalking = 0;

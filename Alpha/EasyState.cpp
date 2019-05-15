@@ -13,7 +13,7 @@ namespace Sarang{
     }
     
     void EasyState::Init(){
-	
+
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Surface", DESERT_FILEPATH);
 		this->_data->assets.LoadTexture("Mines", TILES_FILEPATH);
@@ -25,38 +25,29 @@ namespace Sarang{
 		_background.setTexture(this->_data->assets.GetTexture("Background"));
 		
 		sf::Vector2f targetSize1(100.0f, 70.0f);
-
-		_restart.setScale(
-			targetSize1.x / _restart.getLocalBounds().width,
-			targetSize1.y / _restart.getLocalBounds().height);
-
+		_restart.setScale(targetSize1.x / _restart.getLocalBounds().width, targetSize1.y / _restart.getLocalBounds().height);
 		_restart.setPosition(SCREEN_WIDTH / 2 - (_restart.getGlobalBounds().width / 2), 13);
-
 		_surface.setPosition(0, _surface.getGlobalBounds().height/2);
 
 		sf::Vector2f targetSize(1920.0f / 1.5, 1280.0f / 1.5);
-
-		_background.setScale(
-			targetSize.x / _background.getLocalBounds().width,
-			targetSize.y / _background.getLocalBounds().height);
-
+		_background.setScale(targetSize.x / _background.getLocalBounds().width,	targetSize.y / _background.getLocalBounds().height);
 		_background.setPosition(-315, -50);
 		
-		for (int i = 1; i <= 15; i++)
+		for (int i = 1; i <= 15; i++) {
 			for (int j = 1; j <= 20; j++)
-			{
+			{	
 				grid_upper[i][j] = (rand() % 9) + 12;
 				if (rand() % 5 == 0) { grid_under[i][j] = 9; }
 				else { grid_under[i][j] = 0; }
 			}
+		}
 
 		/*
 			This calculates how many mines are beside the current tile,
 			giving the tile the proper number.
 		*/
 		for (int i = 1; i <= 15; i++)
-			for (int j = 1; j <= 20; j++)
-			{
+			for (int j = 1; j <= 20; j++) {
 				int n = 0;
 				if (grid_under[i][j] == 9) continue;
 				if (grid_under[i + 1][j] == 9) n++;
@@ -69,11 +60,12 @@ namespace Sarang{
 				if (grid_under[i + 1][j - 1] == 9) n++;
 				grid_under[i][j] = n;
 			}
-		_player = new Player(_data);
+		_player = new Player(_data, grid_under);
 
 		// DEBUG Print
-		for (int i = 0; i < 15; i++) {
-			for (int j = 0; j < 20; j++) {
+		std::cout << "Original array" << std::endl;
+		for (int i = 0; i <= 15; i++) {
+			for (int j = 0; j <= 20; j++) {
 				std::cout << grid_under[i][j] << " ";
 			}
 			std::cout << std::endl;
@@ -116,7 +108,7 @@ namespace Sarang{
 				}
 			}
         }        
-    }       
+    }
     
     void EasyState::Update(float dt) {
 		_player->Move(dt);
