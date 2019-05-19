@@ -168,19 +168,29 @@ namespace Sarang{
 					}
 				}
 			}
-
+			int result = 0;
 			if (event.type == sf::Event::KeyPressed && !_player->PlayerMoving() && _player->PlayerChosen()) {
 				if (event.key.code == sf::Keyboard::W) {
-					_player->MovePlayerUp();
+					//result = _player->MovePlayerUp();
+					result = _player->MovePlayer(0, -1, 32);
 				}
 				if (event.key.code == sf::Keyboard::S) {
-					_player->MovePlayerDown();
+					//result = _player->MovePlayerDown();
+					result = _player->MovePlayer(0, 1, 0);
 				}
 				if (event.key.code == sf::Keyboard::A) {
-					_player->MovePlayerLeft();
+					//result = _player->MovePlayerLeft();
+					result = _player->MovePlayer(-1, 0, 64);
 				}
 				if (event.key.code == sf::Keyboard::D) {
-					_player->MovePlayerRight();
+					//result = _player->MovePlayerRight();
+					result = _player->MovePlayer(1, 0, 96);
+				}
+				sf::Vector2i currentPos = _player->GetPos();
+				RemoveUpperTile(currentPos.x, currentPos.y);
+
+				if (result == 9) {
+					// Death
 				}
 			}
 
@@ -242,6 +252,10 @@ namespace Sarang{
 		if (_player->PlayerChosen()) _player->Draw();
 		_data->window.display();
     }
+
+	void HardState::RemoveUpperTile(int xPos, int yPos) {
+		_grid_upper[xPos][yPos] = 0;
+	}
 }
 
 

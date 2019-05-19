@@ -13,7 +13,7 @@ namespace Sarang {
 		}
 
 		std::cout << "TILED ARRAY";
-		PrintTileArray();
+		//PrintTileArray();
 
 		sf::Texture texture;
 		sf::IntRect rectSourceSprite(300, 0, 123, 123);
@@ -42,6 +42,12 @@ namespace Sarang {
 		_playerSprite.setPosition((_xPosition + 1)* TILE_WIDTH + 5, (_yPosition + 2)* TILE_WIDTH);
 	}
 
+	sf::Vector2i Player::GetPos()
+	{
+		sf::Vector2i currentPos = sf::Vector2i(_xPosition, _yPosition);
+		return currentPos;
+	}
+
 	void Player::PrintTileArray() {
 		std::cout << std::endl << std::endl;
 		for (int y = 1; y < GRID_HEIGHT-1; y++) {
@@ -52,58 +58,36 @@ namespace Sarang {
 		}
 	}
 
-	bool Player::CheckMove(int newX, int newY) {
-		// Check if the player has moved into a bomb surrounding player
-		if (_playerPosInArray[newX][newY] == 9) { std::cout << "BOMB" << std::endl; return true;}
-		return false;
+	int Player::CheckMove(int newX, int newY) {
+		return _playerPosInArray[newX][newY];
 	}
 
-	void Player::MovePlayerDown() {
-		if (_yPosition < BOARD_HEIGHT) {
-			int result = CheckMove(_xPosition, _yPosition + 1);
-			_yPosition += 1;
-			spriteShown = 0;
-			isMoving = true;
-			offsetY = TILE_WIDTH;
-			offsetX = 0;
-			originalPosition = _playerSprite.getPosition();
+	int Player::MovePlayer(int newX, int newY, int spriteShown) {
+		bool isValid = false;
+		if (newY == -1 && _yPosition > 1) {
+			isValid = true;
 		}
-	}
-
-	void Player::MovePlayerUp() {
-		if (_yPosition > 1) {
-			int result = CheckMove(_xPosition, _yPosition - 1);
-			_yPosition -= 1;
-			spriteShown = 32;
-			isMoving = true;
-			offsetY = -TILE_WIDTH;
-			offsetX = 0;
-			originalPosition = _playerSprite.getPosition();
+		if (newY == 1 && _yPosition < BOARD_HEIGHT) {
+			isValid = true;
 		}
-	}
-
-	void Player::MovePlayerLeft() {
-		if (_xPosition > 1) {
-			int result = CheckMove(_xPosition - 1, _yPosition);
-			_xPosition -= 1;
-			spriteShown = 64;
-			isMoving = true;
-			offsetY = 0;
-			offsetX = -TILE_WIDTH;
-			originalPosition = _playerSprite.getPosition();
+		if (newX == -1 && _xPosition > 1) {
+			isValid = true;
 		}
-	}
-
-	void Player::MovePlayerRight() {
-		if (_xPosition < BOARD_WIDTH) {
-			int result = CheckMove(_xPosition + 1, _yPosition);
-			_xPosition += 1;
-			spriteShown = 96;
-			isMoving = true;
-			offsetY = 0;
-			offsetX = TILE_WIDTH;
-			originalPosition = _playerSprite.getPosition();
+		if (newX == 1 && _xPosition < BOARD_WIDTH) {
+			isValid = true;
 		}
+		if(isValid){
+			int result = CheckMove(_xPosition + newX, _yPosition + newY);
+			_yPosition += newY;
+			_xPosition += newX;
+			this->spriteShown = spriteShown;
+			isMoving = true;
+			offsetX = newX * TILE_WIDTH;
+			offsetY = newY * TILE_WIDTH;
+			originalPosition = _playerSprite.getPosition();
+			return result;
+		}
+		return 0;
 	}
 
 	void Player::Draw() {
@@ -120,9 +104,7 @@ namespace Sarang {
 		if (isMoving && distance >= 0.2f) {
 			_playerSprite.move(offsetX * dt, offsetY * dt);
 			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, spriteShown, 24, 32));
-
 			_counterWalking++;
-
 			if (_counterWalking > 7) {
 				_counterWalking = 0;
 			}

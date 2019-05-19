@@ -37,5 +37,8 @@ namespace Sarang{
         int x, y;
 
 		Player* _player;
+
+		int xPos;
+		int yPos;
     };
 }

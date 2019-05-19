@@ -9,16 +9,16 @@ namespace Sarang {
 	public:
 		Player(GameDataRef data, int gridUnder[][22]);
 		void PrintTileArray();
-		void MovePlayerDown();
-		void MovePlayerUp();
-		void MovePlayerLeft();
-		void MovePlayerRight();
+		int MovePlayer(int newX, int newY, int spriteShown);
 		void Draw();
 		void Move(float dt);
 		void setPos(int x);
-		bool CheckMove(int newX, int newY); //Checks if there is bomb
+		sf::Vector2i GetPos();
+		int CheckMove(int newX, int newY); //Checks if there is bomb
 		bool PlayerMoving();
 		bool PlayerChosen();
+
+		
 
 	private:
 		GameDataRef _data;

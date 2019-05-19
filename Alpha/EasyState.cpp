@@ -106,19 +106,29 @@ namespace Sarang{
 					}
 				}
 			}
-
+			int result = 0;
 			if (event.type == sf::Event::KeyPressed && !_player->PlayerMoving() && _player->PlayerChosen()) {
 				if (event.key.code == sf::Keyboard::W) {
-					_player->MovePlayerUp();
+					//result = _player->MovePlayerUp();
+					result = _player->MovePlayer(0, -1, 32);
 				}
 				if (event.key.code == sf::Keyboard::S) {
-					_player->MovePlayerDown();
+					//result = _player->MovePlayerDown();
+					result = _player->MovePlayer(0, 1, 0);
 				}
 				if (event.key.code == sf::Keyboard::A) {
-					_player->MovePlayerLeft();
+					//result = _player->MovePlayerLeft();
+					result = _player->MovePlayer(-1, 0, 64);
 				}
 				if (event.key.code == sf::Keyboard::D) {
-					_player->MovePlayerRight();
+					//result = _player->MovePlayerRight();
+					result = _player->MovePlayer(1, 0, 96);
+				}
+				sf::Vector2i currentPos = _player->GetPos();
+				RemoveUpperTile(currentPos.x, currentPos.y);
+
+				if (result == 9) {
+					// Death
 				}
 			}
         }        
@@ -136,7 +146,10 @@ namespace Sarang{
 			for (int j = 1; j <= 20; j++) {
 				//If tile underneath is 9 then it is a mine, and upper grid == 0, hence will show all 
 				//Tiles underneath the surface texture, ending the game
-				if (grid_under[x][y] == 9 && grid_upper[x][y] == 0) { grid_upper[i][j] = 0; }
+				if (grid_under[x][y] == 9 && grid_upper[x][y] == 0) { 
+					grid_upper[i][j] = 0;
+					// Restart Game
+				}
 
 				//Will draw texture underneath
 				if (grid_upper[i][j] == 0) {
@@ -155,7 +168,7 @@ namespace Sarang{
     }
 
 	void EasyState::RemoveUpperTile(int xPos, int yPos) {
-		grid_upper[xPos][yPos] == 0;
+		grid_upper[xPos][yPos] = 0;
 	}
 }
 
