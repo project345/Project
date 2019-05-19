@@ -6,22 +6,18 @@
 #include <iostream>
 
 namespace Sarang{
-    MediumState::MediumState(GameDataRef data) : _data(data){
-        
-    }
-    
-    void MediumState::Init(){
-        _data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
-        _data->assets.LoadTexture("under", TILES_FILEPATH);
-        _data->assets.LoadTexture("upper", DESERT_FILEPATH);
-        
-        _restart.setTexture(this->_data->assets.GetTexture("Restart Button"));
-        _hidden.setTexture(this->_data->assets.GetTexture("under"));
-        _surface.setTexture(this->_data->assets.GetTexture("upper"));
-        
-        _restart.setPosition(SCREEN_WIDTH/2 - (_restart.getGlobalBounds().width/2), SCREEN_HEIGHT*0.001);
-        _surface.setPosition(0, _surface.getGlobalBounds().height/2);
-    }
+    MediumState::MediumState(GameDataRef data) : _data(data){ 
+		_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
+		_data->assets.LoadTexture("under", TILES_FILEPATH);
+		_data->assets.LoadTexture("upper", DESERT_FILEPATH);
+
+		_restart.setTexture(this->_data->assets.GetTexture("Restart Button"));
+		_hidden.setTexture(this->_data->assets.GetTexture("under"));
+		_surface.setTexture(this->_data->assets.GetTexture("upper"));
+
+		_restart.setPosition(SCREEN_WIDTH / 2 - (_restart.getGlobalBounds().width / 2), SCREEN_HEIGHT * 0.001);
+		_surface.setPosition(0, _surface.getGlobalBounds().height / 2);
+	}
     
     void MediumState::HandleInput(){
         sf::Event event;

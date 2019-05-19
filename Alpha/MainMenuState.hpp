@@ -9,8 +9,6 @@ namespace Sarang{
     public:
         MainMenuState(GameDataRef data);
         
-        void Init();
-        
         void HandleInput();
         void Update(float dt);
         void Draw(float dt);
@@ -20,13 +18,10 @@ namespace Sarang{
         
         sf::Clock _clock;
         
-        
         sf::Sprite _easy;
         sf::Sprite _medium;
         sf::Sprite _hard;
 		sf::Sprite _background;
-        
-        
         };
 }
 

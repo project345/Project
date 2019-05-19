@@ -8,30 +8,34 @@ namespace Sarang {
 	class Player {
 	public:
 		Player(GameDataRef data, int gridUnder[][22]);
-
 		void PrintTileArray();
 		void MovePlayerDown();
 		void MovePlayerUp();
 		void MovePlayerLeft();
-		int MovePlayerRight();
-		void CounterWalking();
+		void MovePlayerRight();
 		void Draw();
 		void Move(float dt);
-		void SetPos(int x, int y);
-		int CheckMove(int newX, int newY); // 1 -> safe move, 2 -> number, 3 -> bomb
-		bool isMoving;
+		void setPos(int x);
+		bool CheckMove(int newX, int newY); //Checks if there is bomb
+		bool PlayerMoving();
+		bool PlayerChosen();
 
 	private:
 		GameDataRef _data;
+
+		sf::Sprite _playerSprite;
+
+		sf::Vector2f originalPosition;
+
 		int _playerPosInArray[17][22];
-		int _xPosition;
-		int _yPosition;
 		int _counterWalking = 0;
 		int offsetX;
 		int offsetY;
-		sf::Vector2f originalPosition;
 		int spriteShown;
-		sf::Sprite _playerSprite;
+		int _xPosition;
+		int _yPosition;
+		bool isMoving;
+		bool ChosenStart;
 	};
 
 }
