@@ -92,22 +92,42 @@ namespace Sarang{
 				grid_upper[x][y] = 0; //If tile is clicked, it being 0 will later mean it will display texture underneath.
 				if (event.key.code == sf::Mouse::Right) grid_under[x][y] = 11;
 			}
-
+			int result = 0;
 			if (event.type == sf::Event::KeyPressed && _player->isMoving == false) {
 				if (event.key.code == sf::Keyboard::W) {
-					_player->MovePlayerUp();
+					result = _player->MovePlayerUp();
 				}
 				if (event.key.code == sf::Keyboard::S) {
-					_player->MovePlayerDown();
+					result = _player->MovePlayerDown();
 				}
 				if (event.key.code == sf::Keyboard::A) {
-					_player->MovePlayerLeft();
+					result = _player->MovePlayerLeft();
 				}
 				if (event.key.code == sf::Keyboard::D) {
-					int result = _player->MovePlayerRight();
-					std::cout << result;
+					result = _player->MovePlayerRight();
 				}
-				
+
+				sf::Vector2i currentPos = _player->GetPos();
+
+				// Check around player
+				result = _player->CheckSurrounds(currentPos.x, currentPos.y);
+				RemoveUpperTile(result, currentPos.x, currentPos.y);
+
+				result = _player->CheckSurrounds(currentPos.x - 1, currentPos.y);
+				RemoveUpperTile(result, currentPos.x - 1, currentPos.y);
+
+				result = _player->CheckSurrounds(currentPos.x - 1, currentPos.y + 1);
+				RemoveUpperTile(result, currentPos.x - 1, currentPos.y + 1);
+
+				result = _player->CheckSurrounds(currentPos.x, currentPos.y + 1);
+				RemoveUpperTile(result, currentPos.x, currentPos.y + 1);
+
+				result = _player->CheckSurrounds(currentPos.x + 1, currentPos.y + 1);
+				RemoveUpperTile(result, currentPos.x + 1, currentPos.y + 1);
+
+				result = _player->CheckSurrounds(currentPos.x + 1, currentPos.y);
+				RemoveUpperTile(result, currentPos.x + 1, currentPos.y);
+
 			}
         }        
     }
@@ -144,8 +164,12 @@ namespace Sarang{
         _data->window.display();
     }
 
-	void EasyState::RemoveUpperTile(int xPos, int yPos) {
-		grid_upper[xPos][yPos] == 0;
+	void EasyState::RemoveUpperTile(int result, int xPos, int yPos) {
+		// std::cout << result << std::endl;
+		if (result != 9 && result != 0) {
+			// std::cout << "IN" << std::endl << std::endl << std::endl;
+			grid_upper[xPos][yPos] = 0;
+		}
 	}
 }
 

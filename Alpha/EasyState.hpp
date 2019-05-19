@@ -16,7 +16,7 @@ namespace Sarang{
         void Update(float dt);
         void Draw(float dt);
 
-		void RemoveUpperTile(int xPos, int yPos);
+		void RemoveUpperTile(int result, int xPos, int yPos);
         
     private:
         GameDataRef _data;
@@ -40,5 +40,8 @@ namespace Sarang{
 
 		// Player
 		Player* _player;
+
+		int xPos = 1;
+		int yPos = 1;
     };
 }

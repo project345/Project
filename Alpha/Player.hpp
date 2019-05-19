@@ -10,17 +10,18 @@ namespace Sarang {
 		Player(GameDataRef data, int gridUnder[][22]);
 
 		void PrintTileArray();
-		void MovePlayerDown();
-		void MovePlayerUp();
-		void MovePlayerLeft();
+		int MovePlayerDown();
+		int MovePlayerUp();
+		int MovePlayerLeft();
 		int MovePlayerRight();
 		void CounterWalking();
 		void Draw();
 		void Move(float dt);
 		void SetPos(int x, int y);
-		int CheckMove(int newX, int newY); // 1 -> safe move, 2 -> number, 3 -> bomb
+		int CheckSurrounds(int newX, int newY, bool isMove = false);
 		bool isMoving;
 
+		sf::Vector2i GetPos();
 	private:
 		GameDataRef _data;
 		int _playerPosInArray[17][22];
