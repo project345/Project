@@ -17,13 +17,12 @@ namespace Sarang {
 		int CheckMove(int newX, int newY); //Checks if there is bomb
 		bool PlayerMoving();
 		bool PlayerChosen();
-
 		
-
 	private:
 		GameDataRef _data;
 
 		sf::Sprite _playerSprite;
+		sf::Sprite _explosionSprite;
 
 		sf::Vector2f originalPosition;
 
@@ -36,6 +35,7 @@ namespace Sarang {
 		int _yPosition;
 		bool isMoving;
 		bool ChosenStart;
+		bool _isExplosion;
 	};
 
 }

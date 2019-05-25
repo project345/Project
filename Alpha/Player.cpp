@@ -13,15 +13,17 @@ namespace Sarang {
 		}
 
 		std::cout << "TILED ARRAY";
-		//PrintTileArray();
 
 		sf::Texture texture;
 		sf::IntRect rectSourceSprite(300, 0, 123, 123);
 
 		this->_data->assets.LoadTexture("Player", PLAYER_WALKING);
+		this->_data->assets.LoadTexture("Explosion", EXPLOSION_FILEPATH);
 
 		_playerSprite.setTexture(this->_data->assets.GetTexture("Player"));
 		_playerSprite.setTextureRect(sf::IntRect(0, 0, 24, 32));
+		_explosionSprite.setTexture(this->_data->assets.GetTexture("Explosion"));
+		_explosionSprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
 
 		isMoving = false;
 		ChosenStart = false;
@@ -59,6 +61,11 @@ namespace Sarang {
 	}
 
 	int Player::CheckMove(int newX, int newY) {
+		if (_playerPosInArray[newX][newY] == 9) {
+			_isExplosion = true;
+			std::cout << _playerPosInArray[newX][newY] << std::endl;
+			_explosionSprite.setPosition(((newX + 1) * TILE_WIDTH) - (32 / 2), ((newY + 2) * TILE_WIDTH) - (32 / 2));
+		}
 		return _playerPosInArray[newX][newY];
 	}
 
@@ -85,6 +92,7 @@ namespace Sarang {
 			offsetX = newX * TILE_WIDTH;
 			offsetY = newY * TILE_WIDTH;
 			originalPosition = _playerSprite.getPosition();
+			
 			return result;
 		}
 		return 0;
@@ -92,17 +100,18 @@ namespace Sarang {
 
 	void Player::Draw() {
 		this->_data->window.draw(_playerSprite);
+		if (_isExplosion) {
+			this->_data->window.draw(_explosionSprite);
+		}
 	}
 
 	void Player::Move(float dt) {
 	
 		sf::Vector2f currentPos = _playerSprite.getPosition();
 		sf::Vector2f targetPos = originalPosition + sf::Vector2f(offsetX, offsetY);
-		// Pythagoras to find vector difference
-		float distance = (sqrt(abs(((targetPos.x - currentPos.x) * (targetPos.x - currentPos.x)) + ((targetPos.y - currentPos.y) * (targetPos.y - currentPos.y)))));
-
+		float distance = (sqrt(abs(((targetPos.x - currentPos.x) * (targetPos.x - currentPos.x)) + ((targetPos.y - currentPos.y) * (targetPos.y - currentPos.y))))); // Pythagoras to find vector difference
 		if (isMoving && distance >= 0.2f) {
-			_playerSprite.move(offsetX * dt, offsetY * dt);
+			_playerSprite.move((offsetX/2) * dt, (offsetY/2) * dt);
 			_playerSprite.setTextureRect(sf::IntRect(_counterWalking * 24, spriteShown, 24, 32));
 			_counterWalking++;
 			if (_counterWalking > 7) {

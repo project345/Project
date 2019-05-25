@@ -26,5 +26,6 @@
 #define HARD_MAINMENU_FILEPATH "hard.png"
 #define RESTART_FILEPATH "suicide.jpg"
 #define PLAYER_WALKING "walking.png"
+#define EXPLOSION_FILEPATH "explosion.png"
 
 
