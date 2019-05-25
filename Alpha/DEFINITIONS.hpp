@@ -22,10 +22,7 @@
 #define DONALD_TRUMP "donald2.jpg"
 #define MENU_IMAGE_FILEPATH "wall2.jpg"
 #define EASY_MAINMENU_FILEPATH "easy.png"
-#define MEDIUM_MAINMENU_FILEPATH "medium.png"
 #define HARD_MAINMENU_FILEPATH "hard.png"
 #define RESTART_FILEPATH "suicide.jpg"
 #define PLAYER_WALKING "walking.png"
 #define EXPLOSION_FILEPATH "explosion.png"
-
-

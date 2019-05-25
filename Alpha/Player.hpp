@@ -30,5 +30,4 @@ namespace Sarang {
 		bool ChosenStart;
 		bool _isExplosion;
 	};
-
 }

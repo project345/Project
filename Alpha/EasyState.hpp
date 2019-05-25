@@ -5,8 +5,8 @@
 #include "Game.hpp"
 #include "Player.hpp"
 
-namespace Sarang{
-    class EasyState : public State{
+namespace Sarang {
+    class EasyState : public State {
     public:
         EasyState(GameDataRef data);
         void HandleInput();
@@ -17,28 +17,19 @@ namespace Sarang{
         
     private:
         GameDataRef _data;
-
+		Player* _player;
 		sf::Sprite _restart;
 		sf::Sprite _surface;
 		sf::Sprite _hidden;
 		sf::Sprite _background;
-
 		sf::Texture _under;
 		sf::Texture _upper;
-
 		sf::Event event;
-
 		sf::Vector2i pos;
-
         sf::Clock _clock;
-
         int grid_upper[17][22];
         int grid_under[17][22];
         int x = 0, y = 0;
-
-		Player* _player;
-
-		int xPos;
-		int yPos;
+		int xPos, yPos;
     };
 }

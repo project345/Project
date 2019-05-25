@@ -1,21 +1,13 @@
 #include "StateMachine.hpp"
 
-namespace Sarang{
-    void StateMachine::AddState(StateRef newState, bool isReplacing){
+namespace Sarang {
+    void StateMachine::AddState(StateRef newState, bool isReplacing) {
         this->_isAdding = true;
         this->_isReplacing = isReplacing;
         this->_newState = std::move(newState);
     }
     
-    /*void StateMachine::RemoveState(){
-        this->_isRemoving = true;
-    }*/
-    
-    void StateMachine::ProcessStateChanges(){
-        /*if(this->_isRemoving && !this->_states.empty()){
-            this->_states.pop();
-            this->_isRemoving = false;
-        }*/
+    void StateMachine::ProcessStateChanges() {
         
         if(this->_isAdding){
             if(!this->_states.empty()){
@@ -28,7 +20,7 @@ namespace Sarang{
         }
     }
     
-    StateRef &StateMachine::GetActiveState(){
+    StateRef &StateMachine::GetActiveState() {
         return this->_states.top();    
     }
 }

@@ -7,8 +7,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-namespace Sarang{
-    EasyState::EasyState(GameDataRef data) : _data(data){
+namespace Sarang {
+    EasyState::EasyState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Surface", DESERT_FILEPATH);
 		this->_data->assets.LoadTexture("Mines", TILES_FILEPATH);
@@ -31,21 +31,15 @@ namespace Sarang{
 		for (int i = 1; i <= 15; i++) {
 			for (int j = 1; j <= 20; j++) {
 				grid_upper[i][j] = (rand() % 9) + 12;
-				if (rand() % 5 == 0 || rand() % 7 == 0) { grid_under[i][j] = 9; }
-				else { grid_under[i][j] = 0; }
+				if (rand() % 5 == 0 || rand() % 7 == 0) { 
+					grid_under[i][j] = 9; 
+				} else { 
+					grid_under[i][j] = 0; 
+				}
 			}
 		}
 
 		_player = new Player(_data, grid_under);
-
-		// DEBUG Print
-		std::cout << "Original array" << std::endl;
-		for (int i = 2; i <= GRID_HEIGHT-1; i++) {
-			for (int j = 2; j <= GRID_WIDTH-1; j++) {
-				std::cout << grid_under[j][i] << " ";
-			}
-			std::cout << std::endl;
-		}
 	}
 	
 	void EasyState::Setup(int x) {
@@ -76,20 +70,20 @@ namespace Sarang{
 		}
 	}
 
-    void EasyState::HandleInput(){
+    void EasyState::HandleInput() {
         
 		pos = this->_data->input.GetMousePosition(this->_data->window);
 
 		x = (pos.x - TILE_WIDTH) / TILE_WIDTH;
 		y = (pos.y - 2*TILE_WIDTH) / TILE_WIDTH;
         
-        while(_data->window.pollEvent(event)){
+        while(_data->window.pollEvent(event)) {
             
 			if(sf::Event::Closed == event.type) {
                 _data->window.close();
             }
             
-            if(this->_data->input.IsSpriteClicked(this->_restart, sf::Mouse::Left, this->_data->window)){
+            if(this->_data->input.IsSpriteClicked(this->_restart, sf::Mouse::Left, this->_data->window)) {
                 this->_data->machine.AddState(StateRef(new MainMenuState(_data)),true);
             }
 
@@ -100,7 +94,7 @@ namespace Sarang{
 				if (_player->PlayerChosen()) {
 					if (event.key.code == sf::Mouse::Left) {
 						grid_upper[x][y] = 0; //If tile is clicked, it being 0 will later mean it will display texture underneath.
-					}else if (event.key.code == sf::Mouse::Right) {
+					} else if (event.key.code == sf::Mouse::Right) {
 						grid_under[x][y] = 11;
 						grid_upper[x][y] = 0;
 					}
@@ -138,11 +132,11 @@ namespace Sarang{
         _data->window.clear(sf::Color::Magenta);
         _data->window.draw(_background);
 
-		for (int i = 1; i <= 15; i++)
+		for (int i = 1; i <= 15; i++) {
 			for (int j = 1; j <= 20; j++) {
 				//If tile underneath is 9 then it is a mine, and upper grid == 0, hence will show all 
 				//Tiles underneath the surface texture, ending the game
-				if (grid_under[x][y] == 9 && grid_upper[x][y] == 0) { 
+				if (grid_under[x][y] == 9 && grid_upper[x][y] == 0) {
 					grid_upper[i][j] = 0;
 					// Restart Game
 				}
@@ -158,8 +152,11 @@ namespace Sarang{
 					_data->window.draw(_surface);
 				}
 			}
+		}
 		_data->window.draw(_restart);
-		if (_player->PlayerChosen()) _player->Draw();
+		if (_player->PlayerChosen()) {
+			_player->Draw();
+		}
         _data->window.display();
     }
 
@@ -167,5 +164,3 @@ namespace Sarang{
 		grid_upper[xPos][yPos] = 0;
 	}
 }
-
-

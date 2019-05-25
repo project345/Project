@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "DEFINITIONS.hpp"
 
-namespace Sarang{
-    class AssetManager{
+namespace Sarang {
+    class AssetManager {
     public:
         void LoadTexture(std::string name, std::string fileName);
         sf::Texture &GetTexture(std::string name);

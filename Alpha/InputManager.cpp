@@ -1,7 +1,7 @@
 #include "InputManager.hpp"
 
-namespace Sarang{
-    bool InputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window){
+namespace Sarang {
+    bool InputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window) {
         if (sf::Mouse::isButtonPressed(button)){
 			if (object.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {
 				return true;
@@ -10,7 +10,7 @@ namespace Sarang{
         return false;
     }
     
-    sf::Vector2i InputManager::GetMousePosition(sf::RenderWindow &window){
+    sf::Vector2i InputManager::GetMousePosition(sf::RenderWindow &window) {
         return sf::Mouse::getPosition(window);
     }
 }

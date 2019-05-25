@@ -4,8 +4,8 @@
 #include "State.hpp"
 #include "Game.hpp"
 
-namespace Sarang{
-    class SplashState : public State{
+namespace Sarang {
+    class SplashState : public State {
     public:
         SplashState(GameDataRef data);
         void HandleInput();
@@ -14,14 +14,9 @@ namespace Sarang{
         
     private:
 		bool Intro_Done = false;
-
         GameDataRef _data;
-
         sf::Clock _clock;
-
         sf::Sprite _background_intro;
 		sf::Sprite _background_tit;
     };
 }
-
-

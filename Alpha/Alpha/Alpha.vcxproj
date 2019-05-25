@@ -134,7 +134,6 @@
     <ClCompile Include="..\InputManager.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\MainMenuState.cpp" />
-    <ClCompile Include="..\MediumState.cpp" />
     <ClCompile Include="..\Player.cpp" />
     <ClCompile Include="..\SplashState.cpp" />
     <ClCompile Include="..\StateMachine.cpp" />
@@ -147,7 +146,6 @@
     <ClInclude Include="..\HardState.hpp" />
     <ClInclude Include="..\InputManager.hpp" />
     <ClInclude Include="..\MainMenuState.hpp" />
-    <ClInclude Include="..\MediumState.hpp" />
     <ClInclude Include="..\Player.hpp" />
     <ClInclude Include="..\SplashState.hpp" />
     <ClInclude Include="..\State.hpp" />

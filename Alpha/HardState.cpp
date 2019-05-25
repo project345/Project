@@ -5,8 +5,8 @@
 
 #include <iostream>
 
-namespace Sarang{
-    HardState::HardState(GameDataRef data) : _data(data){
+namespace Sarang {
+    HardState::HardState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Background", BOARD_BACKGROUND_FILEPATH);
 
@@ -38,7 +38,9 @@ namespace Sarang{
 				//if 1 draw surface, if 0 draw under
 				_grid_upper[i][j] = 1;
 				//if 9, then its a bomb
-				if (rand() % 5 == 0 || rand() % 7 == 0) { _grid_under[i][j] = 9; }
+				if (rand() % 5 == 0 || rand() % 7 == 0) { 
+					_grid_under[i][j] = 9; 
+				}
 			}
 		}
 
@@ -102,7 +104,7 @@ namespace Sarang{
 	}
 
 
-    void HardState::HandleInput(){
+    void HardState::HandleInput() {
 		pos = this->_data->input.GetMousePosition(this->_data->window);
         
 		x = (pos.x - TILE_WIDTH) / (TILE_WIDTH);
@@ -114,13 +116,13 @@ namespace Sarang{
 			if (x % 2 != 0 && pos.y < TILE_WIDTH * (3.5 + y - 1)) {
 				if (pos.x > (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (1.5 + y - 1)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
-				}else if(pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (4.5 + y - 1)) * TILE_WIDTH)) > pos.x){
+				} else if(pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (4.5 + y - 1)) * TILE_WIDTH)) > pos.x){
 					x -= 1;
 				}
 			}else if(x % 2 == 0 && pos.y >= TILE_WIDTH * (3.5 + y - 1)) {
 				if (pos.x < (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (2.5 + y - 1)) * TILE_WIDTH)) > pos.x) {
 					x -= 1;
-				}else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (5.5 + y - 1)) * TILE_WIDTH)) < pos.x) {
+				} else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (5.5 + y - 1)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
 				}
 			}
@@ -128,13 +130,13 @@ namespace Sarang{
 			if (x % 2 != 0 && pos.y > TILE_WIDTH * (4.5 + y - 2 )) {
 				if (pos.x > (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (6.5 + y - 2)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
-				}else if (pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (3.5 + y - 2)) * TILE_WIDTH)) > pos.x) {
+				} else if (pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (3.5 + y - 2)) * TILE_WIDTH)) > pos.x) {
 					x -= 1;
 				}
 			}else if(x % 2 == 0 && pos.y <= TILE_WIDTH * (4.5 + y - 2)) {
 				if (pos.x < (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (5.5 + y - 2)) * TILE_WIDTH)) > pos.x) {
 					x -= 1;
-				}else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(gradient) * pos.y + ((x - (2.5 + y - 2)) * TILE_WIDTH)) < pos.x) {
+				} else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(gradient) * pos.y + ((x - (2.5 + y - 2)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
 				}
 			}
@@ -160,8 +162,7 @@ namespace Sarang{
 					if (event.key.code == sf::Mouse::Right) { //Deals with the flag, that is why we have duplicates
 						if (_grid_under[x][y] != 11) {
 							_grid_under[x][y] = 11;
-						}
-						else {
+						} else {
 							_grid_under[x][y] = _under_duplicate[x][y];
 							_grid_upper[x][y] = _upper_duplicate[x][y];
 						}
@@ -224,12 +225,8 @@ namespace Sarang{
 					}
 					_triangle[i - 1][j - 1].setTextureRect(sf::IntRect(_grid_under[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
 					_triangle[i - 1][j - 1].setTexture(&_under, false);
-				}
-				//Else will just draw surface texture
-				else {
-					/*
-						For triangle below(surface texture:
-					*/
+				} else { //Else will just draw surface texture
+					// For triangle below surface texture:
 					if (i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
 						x0 = 16, y0 = 0, x1 = -16, y1 = 32, x2 = 48, y2 = 32;
 					}
@@ -249,7 +246,9 @@ namespace Sarang{
 			}
 		}
 		_data->window.draw(_restart);
-		if (_player->PlayerChosen()) _player->Draw();
+		if (_player->PlayerChosen()) {
+			_player->Draw();
+		}
 		_data->window.display();
     }
 
@@ -257,5 +256,3 @@ namespace Sarang{
 		_grid_upper[xPos][yPos] = 0;
 	}
 }
-
-
