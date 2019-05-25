@@ -17,7 +17,7 @@ namespace Sarang{
 		_upper.loadFromFile(DONALD_TRUMP);
 
 		sf::Vector2f targetSize1(100.0f, 70.0f);
-		sf::Vector2f targetSize(1920.0f / 1.5, 1280.0f / 1.5);
+		sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
 
 		_restart.setScale(targetSize1.x / _restart.getLocalBounds().width, targetSize1.y / _restart.getLocalBounds().height);
 		_background.setScale(targetSize.x / _background.getLocalBounds().width, targetSize.y / _background.getLocalBounds().height);
@@ -239,10 +239,10 @@ namespace Sarang{
 					_triangle[i - 1][j - 1].setTexture(&_upper, false);
 					_triangle[i - 1][j - 1].setTextureRect(sf::IntRect((i + 1) * 30 * 4, j * 32 * 4, 60 * 4, 32 * 4));
 				}
-				_triangle[i - 1][j - 1].setPoint(0, sf::Vector2f(x0, y0));
-				_triangle[i - 1][j - 1].setPoint(1, sf::Vector2f(x1, y1));
-				_triangle[i - 1][j - 1].setPoint(2, sf::Vector2f(x2, y2));
-				_triangle[i - 1][j - 1].setPosition((i + 1) * TILE_WIDTH, (j + 2) * TILE_WIDTH);
+				_triangle[i - 1][j - 1].setPoint((std::size_t)0, sf::Vector2f((float)(x0), (float)(y0)));
+				_triangle[i - 1][j - 1].setPoint((std::size_t)1, sf::Vector2f((float)(x1), (float)(y1)));
+				_triangle[i - 1][j - 1].setPoint((std::size_t)2, sf::Vector2f((float)(x2), (float)(y2)));
+				_triangle[i - 1][j - 1].setPosition((float)((i + 1) * TILE_WIDTH), (float)((j + 2) * TILE_WIDTH));
 				_triangle[i - 1][j - 1].setOutlineColor(sf::Color(139, 69, 19, 200));
 				_triangle[i - 1][j - 1].setOutlineThickness(2);
 				_data->window.draw(_triangle[i - 1][j - 1]);

@@ -34,7 +34,7 @@ namespace Sarang{
 
         int grid_upper[17][22];
         int grid_under[17][22];
-        int x, y;
+        int x = 0, y = 0;
 
 		Player* _player;
 

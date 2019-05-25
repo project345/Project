@@ -17,7 +17,7 @@ namespace Sarang{
 		_background_intro.setScale(targetSize.x / _background_intro.getLocalBounds().width, targetSize.y / _background_intro.getLocalBounds().height);
 		_background_intro.setPosition(-10, 0);
 
-		sf::Vector2f targetSize1(1920.0f / 1.5, 1280.0f / 1.5);
+		sf::Vector2f targetSize1((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
 		_background_tit.setScale(targetSize1.x / _background_tit.getLocalBounds().width, targetSize1.y / _background_tit.getLocalBounds().height);
 		_background_tit.setPosition(-315, -50);
 	}

@@ -41,7 +41,7 @@ namespace Sarang {
 		ChosenStart = true;
 		_xPosition = x;
 		_yPosition = 1;
-		_playerSprite.setPosition((_xPosition + 1)* TILE_WIDTH + 5, (_yPosition + 2)* TILE_WIDTH);
+		_playerSprite.setPosition((float)((_xPosition + 1)* TILE_WIDTH + 5), (float)((_yPosition + 2)* TILE_WIDTH));
 	}
 
 	sf::Vector2i Player::GetPos()
@@ -64,7 +64,7 @@ namespace Sarang {
 		if (_playerPosInArray[newX][newY] == 9) {
 			_isExplosion = true;
 			std::cout << _playerPosInArray[newX][newY] << std::endl;
-			_explosionSprite.setPosition(((newX + 1) * TILE_WIDTH) - (32 / 2), ((newY + 2) * TILE_WIDTH) - (32 / 2));
+			_explosionSprite.setPosition((float)(((newX + 1) * TILE_WIDTH) - (32 / 2)), (float)(((newY + 2) * TILE_WIDTH) - (32 / 2)));
 		}
 		return _playerPosInArray[newX][newY];
 	}
@@ -108,7 +108,7 @@ namespace Sarang {
 	void Player::Move(float dt) {
 	
 		sf::Vector2f currentPos = _playerSprite.getPosition();
-		sf::Vector2f targetPos = originalPosition + sf::Vector2f(offsetX, offsetY);
+		sf::Vector2f targetPos = originalPosition + sf::Vector2f((float)offsetX, (float)offsetY);
 		float distance = (sqrt(abs(((targetPos.x - currentPos.x) * (targetPos.x - currentPos.x)) + ((targetPos.y - currentPos.y) * (targetPos.y - currentPos.y))))); // Pythagoras to find vector difference
 		if (isMoving && distance >= 0.2f) {
 			_playerSprite.move((offsetX/2) * dt, (offsetY/2) * dt);

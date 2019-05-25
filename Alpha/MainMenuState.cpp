@@ -19,10 +19,10 @@ namespace Sarang{
 		_hard.setTexture(this->_data->assets.GetTexture("Hard Button"));
 		_background.setTexture(this->_data->assets.GetTexture("Background"));
 
-		sf::Vector2f targetSize(1920.0f / 1.5, 1280.0f / 1.5);
-		sf::Vector2f targetSize1(960.0f / 7, 480.0f / 7);
-		sf::Vector2f targetSize2(600.0f / 3, 192.0f / 3);
-		sf::Vector2f targetSize3(550.0f / 2, 413.0f / 2);
+		sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
+		sf::Vector2f targetSize1((float)(960.0f / 7), (float)(480.0f / 7));
+		sf::Vector2f targetSize2((float)(600.0f / 3), (float)(192.0f / 3));
+		sf::Vector2f targetSize3((float)(550.0f / 2), (float)(413.0f / 2));
 
 		_easy.setScale(targetSize1.x / _easy.getLocalBounds().width, targetSize1.y / _easy.getLocalBounds().height);
 		_medium.setScale(targetSize2.x / _medium.getLocalBounds().width, targetSize2.y / _medium.getLocalBounds().height);

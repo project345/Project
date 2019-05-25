@@ -24,7 +24,7 @@ namespace Sarang{
 		_restart.setPosition(SCREEN_WIDTH / 2 - (_restart.getGlobalBounds().width / 2), 13);
 		_surface.setPosition(0, _surface.getGlobalBounds().height / 2);
 
-		sf::Vector2f targetSize(1920.0f / 1.5, 1280.0f / 1.5);
+		sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
 		_background.setScale(targetSize.x / _background.getLocalBounds().width, targetSize.y / _background.getLocalBounds().height);
 		_background.setPosition(-315, -50);
 
@@ -150,11 +150,11 @@ namespace Sarang{
 				//Will draw texture underneath
 				if (grid_upper[i][j] == 0) {
 					_hidden.setTextureRect(sf::IntRect(grid_under[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
-					_hidden.setPosition((i + 1) * TILE_WIDTH, (j + 2) * TILE_WIDTH);
+					_hidden.setPosition((float)((i + 1) * TILE_WIDTH), (float)((j + 2) * TILE_WIDTH));
 					_data->window.draw(_hidden);
 				} else { //Else will just draw surface texture
 					_surface.setTextureRect(sf::IntRect(grid_upper[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
-					_surface.setPosition((i + 1) * TILE_WIDTH, (j + 2) * TILE_WIDTH);
+					_surface.setPosition((float)((i + 1) * TILE_WIDTH), (float)((j + 2) * TILE_WIDTH));
 					_data->window.draw(_surface);
 				}
 			}

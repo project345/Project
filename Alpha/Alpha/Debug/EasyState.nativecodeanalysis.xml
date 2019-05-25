@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\maxst\Desktop\COSC345Repo\Alpha\</FILEPATH>
+      <FILENAME>EasyState.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Sarang::EasyState::event' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Sarang::EasyState::{ctor}</FUNCTION>
+    <DECORATED>??0EasyState@Sarang@@QAE@V?$shared_ptr@UGameData@Sarang@@@std@@@Z</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Sarang::EasyState::event</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\maxst\Desktop\COSC345Repo\Alpha\</FILEPATH>
+      <FILENAME>EasyState.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Sarang::EasyState::grid_upper' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Sarang::EasyState::{ctor}</FUNCTION>
+    <DECORATED>??0EasyState@Sarang@@QAE@V?$shared_ptr@UGameData@Sarang@@@std@@@Z</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Sarang::EasyState::grid_upper</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\maxst\Desktop\COSC345Repo\Alpha\</FILEPATH>
+      <FILENAME>EasyState.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Sarang::EasyState::xPos' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Sarang::EasyState::{ctor}</FUNCTION>
+    <DECORATED>??0EasyState@Sarang@@QAE@V?$shared_ptr@UGameData@Sarang@@@std@@@Z</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Sarang::EasyState::xPos</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\maxst\Desktop\COSC345Repo\Alpha\</FILEPATH>
+      <FILENAME>EasyState.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Sarang::EasyState::yPos' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Sarang::EasyState::{ctor}</FUNCTION>
+    <DECORATED>??0EasyState@Sarang@@QAE@V?$shared_ptr@UGameData@Sarang@@@std@@@Z</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Sarang::EasyState::yPos</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
