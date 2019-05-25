@@ -12,8 +12,6 @@ namespace Sarang {
 			}
 		}
 
-		std::cout << "TILED ARRAY";
-
 		sf::Texture texture;
 		sf::IntRect rectSourceSprite(300, 0, 123, 123);
 
@@ -46,24 +44,12 @@ namespace Sarang {
 
 	sf::Vector2i Player::GetPos()
 	{
-		sf::Vector2i currentPos = sf::Vector2i(_xPosition, _yPosition);
-		return currentPos;
-	}
-
-	void Player::PrintTileArray() {
-		std::cout << std::endl << std::endl;
-		for (int y = 1; y < GRID_HEIGHT-1; y++) {
-			for (int x = 1; x < GRID_WIDTH-1; x++) {
-				std::cout << _playerPosInArray[x][y] << " ";
-			}
-			std::cout << std::endl;
-		}
+		return sf::Vector2i(_xPosition, _yPosition);
 	}
 
 	int Player::CheckMove(int newX, int newY) {
 		if (_playerPosInArray[newX][newY] == 9) {
 			_isExplosion = true;
-			std::cout << _playerPosInArray[newX][newY] << std::endl;
 			_explosionSprite.setPosition((float)(((newX + 1) * TILE_WIDTH) - (32 / 2)), (float)(((newY + 2) * TILE_WIDTH) - (32 / 2)));
 		}
 		return _playerPosInArray[newX][newY];
@@ -92,7 +78,6 @@ namespace Sarang {
 			offsetX = newX * TILE_WIDTH;
 			offsetY = newY * TILE_WIDTH;
 			originalPosition = _playerSprite.getPosition();
-			
 			return result;
 		}
 		return 0;
@@ -106,7 +91,6 @@ namespace Sarang {
 	}
 
 	void Player::Move(float dt) {
-	
 		sf::Vector2f currentPos = _playerSprite.getPosition();
 		sf::Vector2f targetPos = originalPosition + sf::Vector2f((float)offsetX, (float)offsetY);
 		float distance = (sqrt(abs(((targetPos.x - currentPos.x) * (targetPos.x - currentPos.x)) + ((targetPos.y - currentPos.y) * (targetPos.y - currentPos.y))))); // Pythagoras to find vector difference
@@ -117,7 +101,7 @@ namespace Sarang {
 			if (_counterWalking > 7) {
 				_counterWalking = 0;
 			}
-		}else {
+		} else {
 			isMoving = false;
 		}
 	}
