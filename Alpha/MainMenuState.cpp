@@ -6,7 +6,7 @@
 #include "HardState.hpp"
 #include <iostream>
 
-namespace MESSY {
+namespace MESY {
     MainMenuState::MainMenuState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Easy Button", EASY_MAINMENU_FILEPATH);
 		this->_data->assets.LoadTexture("Hard Button", HARD_MAINMENU_FILEPATH);

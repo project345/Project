@@ -1,6 +1,6 @@
 #pragma once
 
-namespace MESSY {
+namespace MESY {
 
 	class Player {
 	public:

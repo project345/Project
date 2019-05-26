@@ -3,7 +3,7 @@
 #include "DEFINITIONS.hpp"
 #include "Player.hpp"
 
-namespace MESSY {
+namespace MESY {
 
 	Player::Player(GameDataRef data, int gridUnder[][22]) : _data(data) {
 		for (int i = 0; i < GRID_WIDTH; i++) {

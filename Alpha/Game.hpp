@@ -9,7 +9,7 @@
 #include "InputManager.hpp"
 #include "DEFINITIONS.hpp"
 
-namespace MESSY {
+namespace MESY {
     struct GameData {
         StateMachine machine;
         sf::RenderWindow window;

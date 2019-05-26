@@ -3,6 +3,6 @@
 #include "DEFINITIONS.hpp"
 
 int main() {
-    MESSY::Game(SCREEN_WIDTH,SCREEN_HEIGHT,"alpha");
+    MESY::Game(SCREEN_WIDTH,SCREEN_HEIGHT,"alpha");
     return EXIT_SUCCESS;
 }

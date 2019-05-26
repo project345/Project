@@ -4,7 +4,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 
-namespace MESSY {
+namespace MESY {
     class SplashState : public State {
     public:
         SplashState(GameDataRef data);

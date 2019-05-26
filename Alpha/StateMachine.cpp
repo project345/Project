@@ -1,6 +1,6 @@
 #include "StateMachine.hpp"
 
-namespace MESSY {
+namespace MESY {
     void StateMachine::AddState(StateRef newState, bool isReplacing) {
         this->_isAdding = true;
         this->_isReplacing = isReplacing;

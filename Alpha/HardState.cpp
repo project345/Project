@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-namespace MESSY {
+namespace MESY {
     HardState::HardState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Background", BOARD_BACKGROUND_FILEPATH);

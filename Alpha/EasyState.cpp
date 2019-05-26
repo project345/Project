@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-namespace MESSY {
+namespace MESY {
     EasyState::EasyState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Surface", DESERT_FILEPATH);
@@ -118,10 +118,10 @@ namespace MESSY {
 				RemoveUpperTile(currentPos.x, currentPos.y);
 
 				if (result == 9) {
-					// Death
+					this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true); // Death
 				}
 			}
-        }        
+        }
     }
     
     void EasyState::Update(float dt) {

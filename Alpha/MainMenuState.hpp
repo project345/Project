@@ -4,7 +4,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 
-namespace MESSY {
+namespace MESY {
     class MainMenuState : public State {
     public:
         MainMenuState(GameDataRef data);

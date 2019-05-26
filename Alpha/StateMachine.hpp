@@ -5,7 +5,7 @@
 #include "State.hpp"
 #include "DEFINITIONS.hpp"
 
-namespace MESSY {
+namespace MESY {
     typedef std::unique_ptr<State> StateRef;
     
     class StateMachine {

@@ -5,7 +5,7 @@
 #include "Game.hpp"
 #include "Player.hpp"
 
-namespace MESSY {
+namespace MESY {
     class EasyState : public State {
     public:
         EasyState(GameDataRef data);

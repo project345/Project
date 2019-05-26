@@ -1,6 +1,6 @@
 #pragma once
 
-namespace MESSY {
+namespace MESY {
     class State {
     public:
         virtual void HandleInput() = 0;
