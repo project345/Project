@@ -5,7 +5,7 @@
 #include "Game.hpp"
 #include "Player.hpp"
 
-namespace Sarang {
+namespace MESSY {
     class HardState : public State {
     public:
         HardState(GameDataRef data);
@@ -21,16 +21,11 @@ namespace Sarang {
 		sf::Event event;
 		sf::Vector2i pos;
 		sf::ConvexShape _triangle[15][20];
-		sf::Sprite _restart;
-		sf::Sprite _background;
-		int _grid_under[17][22];
-		int _grid_upper[17][22];
-		int _under_duplicate[17][22];
-		int _upper_duplicate[17][22];
+		sf::Sprite _restart, _background;
+		int _grid_under[17][22], _grid_upper[17][22], _under_duplicate[17][22], _upper_duplicate[17][22];
 		int x, y, x0, x1, x2, y0, y1, y2;;
 		double gradient = 48 / 32;
-		sf::Texture _under;
-		sf::Texture _upper;
+		sf::Texture _under, _upper;
 		Player* _player;
     };
 }

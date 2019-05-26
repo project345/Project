@@ -4,7 +4,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 
-namespace Sarang {
+namespace MESSY {
     class SplashState : public State {
     public:
         SplashState(GameDataRef data);
@@ -16,7 +16,6 @@ namespace Sarang {
 		bool Intro_Done = false;
         GameDataRef _data;
         sf::Clock _clock;
-        sf::Sprite _background_intro;
-		sf::Sprite _background_tit;
+        sf::Sprite _background_intro, _background_tit;
     };
 }

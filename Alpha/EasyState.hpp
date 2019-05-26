@@ -5,7 +5,7 @@
 #include "Game.hpp"
 #include "Player.hpp"
 
-namespace Sarang {
+namespace MESSY {
     class EasyState : public State {
     public:
         EasyState(GameDataRef data);
@@ -18,17 +18,12 @@ namespace Sarang {
     private:
         GameDataRef _data;
 		Player* _player;
-		sf::Sprite _restart;
-		sf::Sprite _surface;
-		sf::Sprite _hidden;
-		sf::Sprite _background;
-		sf::Texture _under;
-		sf::Texture _upper;
+		sf::Sprite _restart, _surface, _hidden, _background;
+		sf::Texture _under, _upper;
 		sf::Event event;
 		sf::Vector2i pos;
         sf::Clock _clock;
-        int grid_upper[17][22];
-        int grid_under[17][22];
+        int grid_upper[17][22], grid_under[17][22];
         int x = 0, y = 0;
 		int xPos, yPos;
     };

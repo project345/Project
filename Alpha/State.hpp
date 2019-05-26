@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Sarang {
+namespace MESSY {
     class State {
     public:
         virtual void HandleInput() = 0;

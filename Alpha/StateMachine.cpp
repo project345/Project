@@ -1,6 +1,6 @@
 #include "StateMachine.hpp"
 
-namespace Sarang {
+namespace MESSY {
     void StateMachine::AddState(StateRef newState, bool isReplacing) {
         this->_isAdding = true;
         this->_isReplacing = isReplacing;

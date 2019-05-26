@@ -1,6 +1,6 @@
 #include "InputManager.hpp"
 
-namespace Sarang {
+namespace MESSY {
     bool InputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window) {
         if (sf::Mouse::isButtonPressed(button)){
 			if (object.getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window)))) {

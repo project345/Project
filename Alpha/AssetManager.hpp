@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "DEFINITIONS.hpp"
 
-namespace Sarang {
+namespace MESSY {
     class AssetManager {
     public:
         void LoadTexture(std::string name, std::string fileName);

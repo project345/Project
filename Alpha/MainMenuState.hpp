@@ -4,7 +4,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 
-namespace Sarang {
+namespace MESSY {
     class MainMenuState : public State {
     public:
         MainMenuState(GameDataRef data);
@@ -15,8 +15,6 @@ namespace Sarang {
     private:
         GameDataRef _data;
         sf::Clock _clock;
-        sf::Sprite _easy;
-        sf::Sprite _hard;
-		sf::Sprite _background;
-        };
+        sf::Sprite _easy, _hard, _background;
+    };
 }

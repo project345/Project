@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Sarang {
+namespace MESSY {
 
 	class Player {
 	public:
@@ -16,18 +16,10 @@ namespace Sarang {
 		
 	private:
 		GameDataRef _data;
-		sf::Sprite _playerSprite;
-		sf::Sprite _explosionSprite;
+		sf::Sprite playerSprite, explosionSprite;
 		sf::Vector2f originalPosition;
 		int _playerPosInArray[17][22];
-		int _counterWalking = 0;
-		int offsetX;
-		int offsetY;
-		int spriteShown;
-		int _xPosition;
-		int _yPosition;
-		bool isMoving;
-		bool ChosenStart;
-		bool _isExplosion;
+		int offsetX, offsetY, spriteShown, xPosition, yPosition, counterWalking = 0;
+		bool isMoving, chosenStart, isExplosion;
 	};
 }

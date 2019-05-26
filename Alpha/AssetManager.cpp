@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "AssetManager.hpp"
 
-namespace Sarang {
+namespace MESSY {
     void AssetManager::LoadTexture(std::string name, std::string fileName) {
         sf::Texture tex;
         if(tex.loadFromFile(fileName)) {

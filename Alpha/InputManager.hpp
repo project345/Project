@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "DEFINITIONS.hpp"
 
-namespace Sarang {
+namespace MESSY {
     class InputManager {
     public:
         bool IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window);

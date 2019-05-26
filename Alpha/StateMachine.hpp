@@ -5,7 +5,7 @@
 #include "State.hpp"
 #include "DEFINITIONS.hpp"
 
-namespace Sarang {
+namespace MESSY {
     typedef std::unique_ptr<State> StateRef;
     
     class StateMachine {
@@ -17,7 +17,6 @@ namespace Sarang {
     private:
         std::stack<StateRef> _states;
         StateRef _newState;
-        bool _isAdding;
-        bool _isReplacing;
+        bool _isAdding, _isReplacing;
     };
 }

@@ -4,7 +4,7 @@
 #include "MainMenuState.hpp"
 #include <iostream>
 
-namespace Sarang {
+namespace MESSY {
     SplashState::SplashState(GameDataRef data) : _data(data) {
 		_data->assets.LoadTexture("Splash Intro", SPLASH_INTRO);
 		_data->assets.LoadTexture("Splash Title", SPLASH_TITLE);
