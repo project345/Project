@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3331012D229BB5AB009721C8 /* AssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3331012C229BB5AB009721C8 /* AssetManager.cpp */; };
+		33310144229BB5D5009721C8 /* HardState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33310130229BB5D5009721C8 /* HardState.cpp */; };
+		33310145229BB5D5009721C8 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33310133229BB5D5009721C8 /* Game.cpp */; };
+		33310146229BB5D5009721C8 /* EasyState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33310134229BB5D5009721C8 /* EasyState.cpp */; };
+		33310147229BB5D5009721C8 /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33310136229BB5D5009721C8 /* InputManager.cpp */; };
+		33310148229BB5D5009721C8 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33310137229BB5D5009721C8 /* Player.cpp */; };
+		3331014A229BB5D5009721C8 /* StateMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33310139229BB5D5009721C8 /* StateMachine.cpp */; };
+		3331014B229BB5D5009721C8 /* SplashState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3331013C229BB5D5009721C8 /* SplashState.cpp */; };
+		3331014C229BB5D5009721C8 /* MainMenuState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3331013E229BB5D5009721C8 /* MainMenuState.cpp */; };
+		3331014D229BB5D5009721C8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33310140229BB5D5009721C8 /* main.cpp */; };
+		33310162229BB81F009721C8 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331015B229BB81F009721C8 /* OpenAL.framework */; };
+		33310163229BB81F009721C8 /* vorbis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331015C229BB81F009721C8 /* vorbis.framework */; };
+		33310164229BB81F009721C8 /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331015D229BB81F009721C8 /* FLAC.framework */; };
+		33310165229BB81F009721C8 /* vorbisfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331015E229BB81F009721C8 /* vorbisfile.framework */; };
+		33310166229BB81F009721C8 /* ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331015F229BB81F009721C8 /* ogg.framework */; };
+		33310167229BB81F009721C8 /* freetype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33310160229BB81F009721C8 /* freetype.framework */; };
+		33310168229BB81F009721C8 /* vorbisenc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33310161229BB81F009721C8 /* vorbisenc.framework */; };
+		3331016F229BB83E009721C8 /* sfml-audio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33310169229BB83E009721C8 /* sfml-audio.framework */; };
+		33310170229BB83E009721C8 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331016A229BB83E009721C8 /* sfml-network.framework */; };
+		33310171229BB83E009721C8 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331016B229BB83E009721C8 /* sfml-system.framework */; };
+		33310172229BB83E009721C8 /* sfml-window.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331016C229BB83E009721C8 /* sfml-window.framework */; };
+		33310173229BB83E009721C8 /* SFML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331016D229BB83E009721C8 /* SFML.framework */; };
+		33310174229BB83E009721C8 /* sfml-graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3331016E229BB83E009721C8 /* sfml-graphics.framework */; };
+		3331017C229BBBFA009721C8 /* easy.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310155229BB698009721C8 /* easy.png */; };
+		3331017D229BBBFA009721C8 /* hard.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310156229BB69F009721C8 /* hard.png */; };
+		3331017F229BBBFA009721C8 /* walking.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310158229BB6AF009721C8 /* walking.png */; };
+		33310180229BBBFA009721C8 /* explosion.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310159229BB6B6009721C8 /* explosion.png */; };
+		33310186229BC1CB009721C8 /* splashscreen.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310184229BC1A8009721C8 /* splashscreen.png */; };
+		33310192229BC47A009721C8 /* Title.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310191229BC45C009721C8 /* Title.png */; };
+		33310193229BC47A009721C8 /* desert.png in Sources */ = {isa = PBXBuildFile; fileRef = 3331018D229BC3CB009721C8 /* desert.png */; };
+		33310194229BC47A009721C8 /* tiles.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310190229BC407009721C8 /* tiles.png */; };
+		33310195229BC47A009721C8 /* suicide.png in Sources */ = {isa = PBXBuildFile; fileRef = 3331018F229BC3EE009721C8 /* suicide.png */; };
+		33310199229BC565009721C8 /* donald2.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310196229BC4D0009721C8 /* donald2.png */; };
+		3331019A229BC565009721C8 /* boardbackground.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310197229BC4E5009721C8 /* boardbackground.png */; };
+		3331019B229BC565009721C8 /* wall2.png in Sources */ = {isa = PBXBuildFile; fileRef = 33310198229BC52D009721C8 /* wall2.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		33310120229BB583009721C8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		33310122229BB583009721C8 /* cosc345.2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cosc345.2; sourceTree = BUILT_PRODUCTS_DIR; };
+		3331012C229BB5AB009721C8 /* AssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
+		3331012E229BB5BD009721C8 /* AssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AssetManager.hpp; sourceTree = "<group>"; };
+		3331012F229BB5D5009721C8 /* HardState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HardState.hpp; sourceTree = "<group>"; };
+		33310130229BB5D5009721C8 /* HardState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HardState.cpp; sourceTree = "<group>"; };
+		33310131229BB5D5009721C8 /* SplashState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SplashState.hpp; sourceTree = "<group>"; };
+		33310132229BB5D5009721C8 /* InputManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputManager.hpp; sourceTree = "<group>"; };
+		33310133229BB5D5009721C8 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		33310134229BB5D5009721C8 /* EasyState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EasyState.cpp; sourceTree = "<group>"; };
+		33310135229BB5D5009721C8 /* DEFINITIONS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = DEFINITIONS.hpp; path = "/Users/han/Library/Developer/Xcode/DerivedData/cosc345.2-behbcaatfscrendwbhupgzympjrb/Build/Products/Debug/../../../../../../../../Desktop/cosc345.2/cosc345.2/cosc345.2/DEFINITIONS.hpp"; sourceTree = "<absolute>"; };
+		33310136229BB5D5009721C8 /* InputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputManager.cpp; sourceTree = "<group>"; };
+		33310137229BB5D5009721C8 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		33310139229BB5D5009721C8 /* StateMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StateMachine.cpp; sourceTree = "<group>"; };
+		3331013A229BB5D5009721C8 /* MainMenuState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainMenuState.hpp; sourceTree = "<group>"; };
+		3331013B229BB5D5009721C8 /* EasyState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EasyState.hpp; sourceTree = "<group>"; };
+		3331013C229BB5D5009721C8 /* SplashState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplashState.cpp; sourceTree = "<group>"; };
+		3331013D229BB5D5009721C8 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		3331013E229BB5D5009721C8 /* MainMenuState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainMenuState.cpp; sourceTree = "<group>"; };
+		3331013F229BB5D5009721C8 /* StateMachine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StateMachine.hpp; sourceTree = "<group>"; };
+		33310140229BB5D5009721C8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = "../../../Project-master/Alpha/main.cpp"; sourceTree = "<group>"; };
+		33310141229BB5D5009721C8 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		33310142229BB5D5009721C8 /* State.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State.hpp; sourceTree = "<group>"; };
+		33310155229BB698009721C8 /* easy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = easy.png; sourceTree = "<group>"; };
+		33310156229BB69F009721C8 /* hard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hard.png; sourceTree = "<group>"; };
+		33310158229BB6AF009721C8 /* walking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walking.png; sourceTree = "<group>"; };
+		33310159229BB6B6009721C8 /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = explosion.png; sourceTree = "<group>"; };
+		3331015B229BB81F009721C8 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = ExternalLibraries/SFML/extlibs/OpenAL.framework; sourceTree = "<group>"; };
+		3331015C229BB81F009721C8 /* vorbis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vorbis.framework; path = ExternalLibraries/SFML/extlibs/vorbis.framework; sourceTree = "<group>"; };
+		3331015D229BB81F009721C8 /* FLAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAC.framework; path = ExternalLibraries/SFML/extlibs/FLAC.framework; sourceTree = "<group>"; };
+		3331015E229BB81F009721C8 /* vorbisfile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vorbisfile.framework; path = ExternalLibraries/SFML/extlibs/vorbisfile.framework; sourceTree = "<group>"; };
+		3331015F229BB81F009721C8 /* ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ogg.framework; path = ExternalLibraries/SFML/extlibs/ogg.framework; sourceTree = "<group>"; };
+		33310160229BB81F009721C8 /* freetype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = freetype.framework; path = ExternalLibraries/SFML/extlibs/freetype.framework; sourceTree = "<group>"; };
+		33310161229BB81F009721C8 /* vorbisenc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vorbisenc.framework; path = ExternalLibraries/SFML/extlibs/vorbisenc.framework; sourceTree = "<group>"; };
+		33310169229BB83E009721C8 /* sfml-audio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-audio.framework"; path = "ExternalLibraries/SFML/Frameworks/sfml-audio.framework"; sourceTree = "<group>"; };
+		3331016A229BB83E009721C8 /* sfml-network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-network.framework"; path = "ExternalLibraries/SFML/Frameworks/sfml-network.framework"; sourceTree = "<group>"; };
+		3331016B229BB83E009721C8 /* sfml-system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-system.framework"; path = "ExternalLibraries/SFML/Frameworks/sfml-system.framework"; sourceTree = "<group>"; };
+		3331016C229BB83E009721C8 /* sfml-window.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-window.framework"; path = "ExternalLibraries/SFML/Frameworks/sfml-window.framework"; sourceTree = "<group>"; };
+		3331016D229BB83E009721C8 /* SFML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFML.framework; path = ExternalLibraries/SFML/Frameworks/SFML.framework; sourceTree = "<group>"; };
+		3331016E229BB83E009721C8 /* sfml-graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-graphics.framework"; path = "ExternalLibraries/SFML/Frameworks/sfml-graphics.framework"; sourceTree = "<group>"; };
+		33310184229BC1A8009721C8 /* splashscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splashscreen.png; path = ../../../splashscreen.png; sourceTree = "<group>"; };
+		3331018D229BC3CB009721C8 /* desert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desert.png; sourceTree = "<group>"; };
+		3331018F229BC3EE009721C8 /* suicide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suicide.png; sourceTree = "<group>"; };
+		33310190229BC407009721C8 /* tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiles.png; sourceTree = "<group>"; };
+		33310191229BC45C009721C8 /* Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Title.png; sourceTree = "<group>"; };
+		33310196229BC4D0009721C8 /* donald2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donald2.png; sourceTree = "<group>"; };
+		33310197229BC4E5009721C8 /* boardbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boardbackground.png; sourceTree = "<group>"; };
+		33310198229BC52D009721C8 /* wall2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall2.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3331011F229BB583009721C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3331016F229BB83E009721C8 /* sfml-audio.framework in Frameworks */,
+				33310170229BB83E009721C8 /* sfml-network.framework in Frameworks */,
+				33310171229BB83E009721C8 /* sfml-system.framework in Frameworks */,
+				33310172229BB83E009721C8 /* sfml-window.framework in Frameworks */,
+				33310173229BB83E009721C8 /* SFML.framework in Frameworks */,
+				33310174229BB83E009721C8 /* sfml-graphics.framework in Frameworks */,
+				33310162229BB81F009721C8 /* OpenAL.framework in Frameworks */,
+				33310163229BB81F009721C8 /* vorbis.framework in Frameworks */,
+				33310164229BB81F009721C8 /* FLAC.framework in Frameworks */,
+				33310165229BB81F009721C8 /* vorbisfile.framework in Frameworks */,
+				33310166229BB81F009721C8 /* ogg.framework in Frameworks */,
+				33310167229BB81F009721C8 /* freetype.framework in Frameworks */,
+				33310168229BB81F009721C8 /* vorbisenc.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33310119229BB583009721C8 = {
+			isa = PBXGroup;
+			children = (
+				33310124229BB583009721C8 /* cosc345.2 */,
+				33310123229BB583009721C8 /* Products */,
+				3331015A229BB81E009721C8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		33310123229BB583009721C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33310122229BB583009721C8 /* cosc345.2 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		33310124229BB583009721C8 /* cosc345.2 */ = {
+			isa = PBXGroup;
+			children = (
+				33310191229BC45C009721C8 /* Title.png */,
+				3331018D229BC3CB009721C8 /* desert.png */,
+				33310196229BC4D0009721C8 /* donald2.png */,
+				33310184229BC1A8009721C8 /* splashscreen.png */,
+				33310190229BC407009721C8 /* tiles.png */,
+				33310197229BC4E5009721C8 /* boardbackground.png */,
+				33310155229BB698009721C8 /* easy.png */,
+				33310156229BB69F009721C8 /* hard.png */,
+				33310158229BB6AF009721C8 /* walking.png */,
+				33310159229BB6B6009721C8 /* explosion.png */,
+				33310198229BC52D009721C8 /* wall2.png */,
+				3331018F229BC3EE009721C8 /* suicide.png */,
+				33310135229BB5D5009721C8 /* DEFINITIONS.hpp */,
+				33310134229BB5D5009721C8 /* EasyState.cpp */,
+				3331013B229BB5D5009721C8 /* EasyState.hpp */,
+				33310133229BB5D5009721C8 /* Game.cpp */,
+				3331013D229BB5D5009721C8 /* Game.hpp */,
+				33310130229BB5D5009721C8 /* HardState.cpp */,
+				3331012F229BB5D5009721C8 /* HardState.hpp */,
+				33310136229BB5D5009721C8 /* InputManager.cpp */,
+				33310132229BB5D5009721C8 /* InputManager.hpp */,
+				33310140229BB5D5009721C8 /* main.cpp */,
+				3331013E229BB5D5009721C8 /* MainMenuState.cpp */,
+				3331013A229BB5D5009721C8 /* MainMenuState.hpp */,
+				33310137229BB5D5009721C8 /* Player.cpp */,
+				33310141229BB5D5009721C8 /* Player.hpp */,
+				3331013C229BB5D5009721C8 /* SplashState.cpp */,
+				33310131229BB5D5009721C8 /* SplashState.hpp */,
+				33310142229BB5D5009721C8 /* State.hpp */,
+				33310139229BB5D5009721C8 /* StateMachine.cpp */,
+				3331013F229BB5D5009721C8 /* StateMachine.hpp */,
+				3331012C229BB5AB009721C8 /* AssetManager.cpp */,
+				3331012E229BB5BD009721C8 /* AssetManager.hpp */,
+			);
+			path = cosc345.2;
+			sourceTree = "<group>";
+		};
+		3331015A229BB81E009721C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33310169229BB83E009721C8 /* sfml-audio.framework */,
+				3331016E229BB83E009721C8 /* sfml-graphics.framework */,
+				3331016A229BB83E009721C8 /* sfml-network.framework */,
+				3331016B229BB83E009721C8 /* sfml-system.framework */,
+				3331016C229BB83E009721C8 /* sfml-window.framework */,
+				3331016D229BB83E009721C8 /* SFML.framework */,
+				3331015D229BB81F009721C8 /* FLAC.framework */,
+				33310160229BB81F009721C8 /* freetype.framework */,
+				3331015F229BB81F009721C8 /* ogg.framework */,
+				3331015B229BB81F009721C8 /* OpenAL.framework */,
+				3331015C229BB81F009721C8 /* vorbis.framework */,
+				33310161229BB81F009721C8 /* vorbisenc.framework */,
+				3331015E229BB81F009721C8 /* vorbisfile.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		33310121229BB583009721C8 /* cosc345.2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33310129229BB583009721C8 /* Build configuration list for PBXNativeTarget "cosc345.2" */;
+			buildPhases = (
+				3331011E229BB583009721C8 /* Sources */,
+				3331011F229BB583009721C8 /* Frameworks */,
+				33310120229BB583009721C8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cosc345.2;
+			productName = cosc345.2;
+			productReference = 33310122229BB583009721C8 /* cosc345.2 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3331011A229BB583009721C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = sarang;
+				TargetAttributes = {
+					33310121229BB583009721C8 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
+			};
+			buildConfigurationList = 3331011D229BB583009721C8 /* Build configuration list for PBXProject "cosc345.2" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 33310119229BB583009721C8;
+			productRefGroup = 33310123229BB583009721C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				33310121229BB583009721C8 /* cosc345.2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3331011E229BB583009721C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33310199229BC565009721C8 /* donald2.png in Sources */,
+				3331019A229BC565009721C8 /* boardbackground.png in Sources */,
+				3331019B229BC565009721C8 /* wall2.png in Sources */,
+				33310192229BC47A009721C8 /* Title.png in Sources */,
+				33310193229BC47A009721C8 /* desert.png in Sources */,
+				33310194229BC47A009721C8 /* tiles.png in Sources */,
+				33310195229BC47A009721C8 /* suicide.png in Sources */,
+				33310186229BC1CB009721C8 /* splashscreen.png in Sources */,
+				3331017C229BBBFA009721C8 /* easy.png in Sources */,
+				3331017D229BBBFA009721C8 /* hard.png in Sources */,
+				3331017F229BBBFA009721C8 /* walking.png in Sources */,
+				33310180229BBBFA009721C8 /* explosion.png in Sources */,
+				3331014C229BB5D5009721C8 /* MainMenuState.cpp in Sources */,
+				33310146229BB5D5009721C8 /* EasyState.cpp in Sources */,
+				3331014D229BB5D5009721C8 /* main.cpp in Sources */,
+				33310148229BB5D5009721C8 /* Player.cpp in Sources */,
+				3331014A229BB5D5009721C8 /* StateMachine.cpp in Sources */,
+				3331012D229BB5AB009721C8 /* AssetManager.cpp in Sources */,
+				33310147229BB5D5009721C8 /* InputManager.cpp in Sources */,
+				33310144229BB5D5009721C8 /* HardState.cpp in Sources */,
+				3331014B229BB5D5009721C8 /* SplashState.cpp in Sources */,
+				33310145229BB5D5009721C8 /* Game.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		33310127229BB583009721C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		33310128229BB583009721C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3331012A229BB583009721C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ExternalLibraries/SFML/extlibs",
+					"$(PROJECT_DIR)/ExternalLibraries/SFML/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3331012B229BB583009721C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ExternalLibraries/SFML/extlibs",
+					"$(PROJECT_DIR)/ExternalLibraries/SFML/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3331011D229BB583009721C8 /* Build configuration list for PBXProject "cosc345.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33310127229BB583009721C8 /* Debug */,
+				33310128229BB583009721C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33310129229BB583009721C8 /* Build configuration list for PBXNativeTarget "cosc345.2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3331012A229BB583009721C8 /* Debug */,
+				3331012B229BB583009721C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3331011A229BB583009721C8 /* Project object */;
+}
