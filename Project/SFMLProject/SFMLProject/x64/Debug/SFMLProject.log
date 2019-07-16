@@ -1,0 +1,20 @@
+﻿  AssetManager.cpp
+  Game.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\AssetManager.cpp(1,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  GameOverState.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\Game.h(5,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  GameState.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\GameOverState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  InputManager.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\GameState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  main.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\InputManager.h(3,10): error C1083:  Cannot open include file: 'SFML\Graphics.hpp': No such file or directory
+  MainMenuState.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\Game.h(5,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  Player.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\GameState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  SplashState.cpp
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\GameState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
+  StateMachine.cpp
+  Generating Code...
+C:\Users\maxst\Desktop\Cosc345\SFML Minesweeper\SFMLProject\SFMLProject\SplashState.h(3,10): error C1083:  Cannot open include file: 'SFML/Graphics.hpp': No such file or directory

@@ -1,0 +1,12 @@
+﻿  AssetManager.cpp
+  EasyState.cpp
+  Game.cpp
+  HardState.cpp
+  InputManager.cpp
+  main.cpp
+  MainMenuState.cpp
+  Player.cpp
+  SplashState.cpp
+  StateMachine.cpp
+  Generating Code...
+  Alpha.vcxproj -> C:\Users\maxst\Desktop\Cosc345\Alpha\Debug\Alpha.exe
