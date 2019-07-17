@@ -1,3 +1,4 @@
+//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #include <sstream>
 #include "SplashState.hpp"
 #include "DEFINITIONS.hpp"
@@ -5,7 +6,7 @@
 #include <iostream>
 
 namespace MESY {
-    SplashState::SplashState(GameDataRef data) : _data(data) {
+	SplashState::SplashState(GameDataRef data) : _data(data) {
 		_data->assets.LoadTexture("Splash Intro", SPLASH_INTRO);
 		_data->assets.LoadTexture("Splash Title", SPLASH_TITLE);
 
@@ -20,30 +21,31 @@ namespace MESY {
 		_background_tit.setScale(targetSize1.x / _background_tit.getLocalBounds().width, targetSize1.y / _background_tit.getLocalBounds().height);
 		_background_tit.setPosition(-315, -50);
 	}
-    
-    void SplashState::HandleInput() {
-        sf::Event event;
-        
-        while(_data->window.pollEvent(event)) {
-            if(sf::Event::Closed == event.type) {
-                _data->window.close();
-            }
-        }
-    }
 
-    void SplashState::Update(float dt) {
+	void SplashState::HandleInput() {
+		sf::Event event;
+
+		while (_data->window.pollEvent(event)) {
+			if (sf::Event::Closed == event.type) {
+				_data->window.close();
+			}
+		}
+	}
+
+	void SplashState::Update(float dt) {
 		if (this->_clock.getElapsedTime().asSeconds() > SPLASH_TITLE_SHOW_TIME) {
 			this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
 		}
-    }
+	}
 
-    void SplashState::Draw(float dt) {
-        _data->window.clear();
+	void SplashState::Draw(float dt) {
+		_data->window.clear();
 		if (this->_clock.getElapsedTime().asSeconds() > SPLASH_INTRO_SHOW_TIME && Intro_Done == false) {
 			_data->window.draw(_background_tit);
-		} else {
+		}
+		else {
 			_data->window.draw(_background_intro);
 		}
-        _data->window.display();
-    }
+		_data->window.display();
+	}
 }

@@ -1,3 +1,4 @@
+//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #include <sstream>
 #include "SplashState.hpp"
 #include "DEFINITIONS.hpp"
@@ -7,7 +8,7 @@
 #include <iostream>
 
 namespace MESY {
-    MainMenuState::MainMenuState(GameDataRef data) : _data(data) {
+	MainMenuState::MainMenuState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Easy Button", EASY_MAINMENU_FILEPATH);
 		this->_data->assets.LoadTexture("Hard Button", HARD_MAINMENU_FILEPATH);
 		this->_data->assets.LoadTexture("Background", MENU_IMAGE_FILEPATH);
@@ -28,35 +29,35 @@ namespace MESY {
 
 		_background.setScale(targetSize.x / _background.getLocalBounds().width, targetSize.y / _background.getLocalBounds().height);
 		_background.setPosition(-315, -50);
-    }
-         
-    void MainMenuState::HandleInput() {
-        sf::Event event;
-        
-        while(_data->window.pollEvent(event)) {
-            if(sf::Event::Closed == event.type) {
-                _data->window.close();
-            }
-            
-            if(this->_data->input.IsSpriteClicked(this->_easy, sf::Mouse::Left, this->_data->window)) {
-                this->_data->machine.AddState(StateRef(new EasyState(_data)),true);
-               }
-            
-            if(this->_data->input.IsSpriteClicked(this->_hard, sf::Mouse::Left, this->_data->window)) {
-                this->_data->machine.AddState(StateRef(new HardState(_data)),true);
-            }
-        }
-    }
-    
-    void MainMenuState::Update(float dt) {
-        
-    }
+	}
 
-    void MainMenuState::Draw(float dt) {
-        _data->window.clear();
+	void MainMenuState::HandleInput() {
+		sf::Event event;
+
+		while (_data->window.pollEvent(event)) {
+			if (sf::Event::Closed == event.type) {
+				_data->window.close();
+			}
+
+			if (this->_data->input.IsSpriteClicked(this->_easy, sf::Mouse::Left, this->_data->window)) {
+				this->_data->machine.AddState(StateRef(new EasyState(_data)), true);
+			}
+
+			if (this->_data->input.IsSpriteClicked(this->_hard, sf::Mouse::Left, this->_data->window)) {
+				this->_data->machine.AddState(StateRef(new HardState(_data)), true);
+			}
+		}
+	}
+
+	void MainMenuState::Update(float dt) {
+
+	}
+
+	void MainMenuState::Draw(float dt) {
+		_data->window.clear();
 		_data->window.draw(_background);
-        _data->window.draw(_easy);
-        _data->window.draw(_hard);
-        _data->window.display();
-    }
+		_data->window.draw(_easy);
+		_data->window.draw(_hard);
+		_data->window.display();
+	}
 }

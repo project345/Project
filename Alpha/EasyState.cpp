@@ -1,3 +1,4 @@
+//@author @author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #include <sstream>
 #include <time.h>
 #include "SplashState.hpp"
@@ -8,7 +9,7 @@
 #include <iostream>
 
 namespace MESY {
-    EasyState::EasyState(GameDataRef data) : _data(data) {
+	EasyState::EasyState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Surface", DESERT_FILEPATH);
 		this->_data->assets.LoadTexture("Mines", TILES_FILEPATH);
@@ -31,24 +32,25 @@ namespace MESY {
 		for (int i = 1; i <= 15; i++) {
 			for (int j = 1; j <= 20; j++) {
 				grid_upper[i][j] = (rand() % 9) + 12;
-				if (rand() % 5 == 0 || rand() % 7 == 0) { 
-					grid_under[i][j] = 9; 
-				} else { 
-					grid_under[i][j] = 0; 
+				if (rand() % 5 == 0 || rand() % 7 == 0) {
+					grid_under[i][j] = 9;
+				}
+				else {
+					grid_under[i][j] = 0;
 				}
 			}
 		}
 
 		_player = new Player(_data, grid_under);
 	}
-	
+
 	void EasyState::Setup(int x) {
 		//sets players position to the tile the player clicked, and makes hasChosen = true which needs to be true so player can be drawn.
 		_player->setPos(x);
 
 		//sets which tiles to be clear of mines in the start, now its the player's choice, if upper = 0 it will show tile, if under = 0, it will have no bomb
 		grid_upper[x][1] = 0;
-		grid_under[x][1] = 0; grid_under[x-1][1] = 0; grid_under[x+1][1] = 0; grid_under[x][2] = 0; grid_under[x-1][2] = 0; grid_under[x+1][2] = 0;
+		grid_under[x][1] = 0; grid_under[x - 1][1] = 0; grid_under[x + 1][1] = 0; grid_under[x][2] = 0; grid_under[x - 1][2] = 0; grid_under[x + 1][2] = 0;
 		/*
 			This calculates how many mines are beside the current tile,
 			giving the tile the proper number.
@@ -70,31 +72,31 @@ namespace MESY {
 		}
 	}
 
-    void EasyState::HandleInput() {
-        
+	void EasyState::HandleInput() {
+
 		pos = this->_data->input.GetMousePosition(this->_data->window);
 
-		x = (pos.x - TILE_WIDTH) / TILE_WIDTH;
-		y = (pos.y - 2*TILE_WIDTH) / TILE_WIDTH;
-        
-        while(_data->window.pollEvent(event)) {
-            
-			if(sf::Event::Closed == event.type) {
-                _data->window.close();
-            }
-            
-            if(this->_data->input.IsSpriteClicked(this->_restart, sf::Mouse::Left, this->_data->window)) {
-                this->_data->machine.AddState(StateRef(new MainMenuState(_data)),true);
-            }
+		while (_data->window.pollEvent(event)) {
+
+			if (sf::Event::Closed == event.type) {
+				_data->window.close();
+			}
+
+			if (this->_data->input.IsSpriteClicked(this->_restart, sf::Mouse::Left, this->_data->window)) {
+				this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+			}
 
 			if (event.type == sf::Event::MouseButtonPressed) {
+				x = (pos.x - TILE_WIDTH) / TILE_WIDTH;
+				y = (pos.y - 2 * TILE_WIDTH) / TILE_WIDTH;
 				if (x > 0 && x < 16 && y == 1 && !_player->PlayerChosen()) {
 					Setup(x);
 				}
 				if (_player->PlayerChosen()) {
 					if (event.key.code == sf::Mouse::Left) {
 						grid_upper[x][y] = 0; //If tile is clicked, it being 0 will later mean it will display texture underneath.
-					} else if (event.key.code == sf::Mouse::Right) {
+					}
+					else if (event.key.code == sf::Mouse::Right) {
 						grid_under[x][y] = 11;
 						grid_upper[x][y] = 0;
 					}
@@ -117,20 +119,23 @@ namespace MESY {
 				sf::Vector2i currentPos = _player->GetPos();
 				RemoveUpperTile(currentPos.x, currentPos.y);
 
+				x = currentPos.x;
+				y = currentPos.y;
+				grid_upper[x][y] = 0;
 				if (result == 9) {
-					this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true); // Death
+					//this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true); // Death
 				}
 			}
-        }
-    }
-    
-    void EasyState::Update(float dt) {
+		}
+	}
+
+	void EasyState::Update(float dt) {
 		_player->Move(dt);
-    }
-    
-    void EasyState::Draw(float dt) {
-        _data->window.clear(sf::Color::Magenta);
-        _data->window.draw(_background);
+	}
+
+	void EasyState::Draw(float dt) {
+		_data->window.clear(sf::Color::Magenta);
+		_data->window.draw(_background);
 
 		for (int i = 1; i <= 15; i++) {
 			for (int j = 1; j <= 20; j++) {
@@ -146,7 +151,8 @@ namespace MESY {
 					_hidden.setTextureRect(sf::IntRect(grid_under[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
 					_hidden.setPosition((float)((i + 1) * TILE_WIDTH), (float)((j + 2) * TILE_WIDTH));
 					_data->window.draw(_hidden);
-				} else { //Else will just draw surface texture
+				}
+				else { //Else will just draw surface texture
 					_surface.setTextureRect(sf::IntRect(grid_upper[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
 					_surface.setPosition((float)((i + 1) * TILE_WIDTH), (float)((j + 2) * TILE_WIDTH));
 					_data->window.draw(_surface);
@@ -157,8 +163,8 @@ namespace MESY {
 		if (_player->PlayerChosen()) {
 			_player->Draw();
 		}
-        _data->window.display();
-    }
+		_data->window.display();
+	}
 
 	void EasyState::RemoveUpperTile(int xPos, int yPos) {
 		grid_upper[xPos][yPos] = 0;

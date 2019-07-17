@@ -1,3 +1,4 @@
+//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #pragma once
 
 namespace MESY {
@@ -13,7 +14,7 @@ namespace MESY {
 		int CheckMove(int newX, int newY); //Checks if there is bomb
 		bool PlayerMoving();
 		bool PlayerChosen();
-		
+
 	private:
 		GameDataRef _data;
 		sf::Sprite playerSprite, explosionSprite;

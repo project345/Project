@@ -1,5 +1,5 @@
+//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #pragma once
-
 #include <sstream>
 #include <memory>
 #include <string>
@@ -10,23 +10,23 @@
 #include "DEFINITIONS.hpp"
 
 namespace MESY {
-    struct GameData {
-        StateMachine machine;
-        sf::RenderWindow window;
-        AssetManager assets;
-        InputManager input;
-    };
-    
-    typedef std::shared_ptr<GameData> GameDataRef;
-    
-    class Game {
-	 public:
-        Game(int width, int height, std::string title);
+	struct GameData {
+		StateMachine machine;
+		sf::RenderWindow window;
+		AssetManager assets;
+		InputManager input;
+	};
 
-	 private:
-		const float dt = 1.0f/60.0f;
-        sf::Clock _clock;
-		GameDataRef _data = std::make_shared<GameData>();       
-        void Run();
-    };
+	typedef std::shared_ptr<GameData> GameDataRef;
+
+	class Game {
+	public:
+		Game(int width, int height, std::string title);
+
+	private:
+		const float dt = 1.0f / 60.0f;
+		sf::Clock _clock;
+		GameDataRef _data = std::make_shared<GameData>();
+		void Run();
+	};
 }

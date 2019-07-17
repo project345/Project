@@ -1,23 +1,23 @@
+//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
 #include "Player.hpp"
 
 namespace MESY {
-    class HardState : public State {
-    public:
-        HardState(GameDataRef data);
-        void HandleInput();
-        void Update(float dt);
-        void Draw(float dt);
+	class HardState : public State {
+	public:
+		HardState(GameDataRef data);
+		void HandleInput();
+		void Update(float dt);
+		void Draw(float dt);
 		void RemoveUpperTile(int xPos, int yPos);
 		void Setup(int x);
-        
-    private:
-        GameDataRef _data;
-        sf::Clock _clock;
+
+	private:
+		GameDataRef _data;
+		sf::Clock _clock;
 		sf::Event event;
 		sf::Vector2i pos;
 		sf::ConvexShape _triangle[15][20];
@@ -27,5 +27,5 @@ namespace MESY {
 		double gradient = 48 / 32;
 		sf::Texture _under, _upper;
 		Player* _player;
-    };
+	};
 }

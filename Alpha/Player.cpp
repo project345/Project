@@ -1,13 +1,15 @@
+//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #include "Game.hpp"
 #include "iostream"
 #include "DEFINITIONS.hpp"
 #include "Player.hpp"
+#include <cmath>
 
 namespace MESY {
 
 	Player::Player(GameDataRef data, int gridUnder[][22]) : _data(data) {
 		for (int i = 0; i < GRID_WIDTH; i++) {
-			for (int j = 0; j < GRID_HEIGHT; j++){
+			for (int j = 0; j < GRID_HEIGHT; j++) {
 				_playerPosInArray[i][j] = gridUnder[i][j];
 			}
 		}
@@ -39,7 +41,7 @@ namespace MESY {
 		chosenStart = true;
 		xPosition = x;
 		yPosition = 1;
-		playerSprite.setPosition((float)((xPosition + 1)* TILE_WIDTH + 5), (float)((yPosition + 2)* TILE_WIDTH));
+		playerSprite.setPosition((float)((xPosition + 1) * TILE_WIDTH + 5), (float)((yPosition + 2) * TILE_WIDTH));
 	}
 
 	sf::Vector2i Player::GetPos()
@@ -69,7 +71,7 @@ namespace MESY {
 		if (newX == 1 && xPosition < BOARD_WIDTH) {
 			isValid = true;
 		}
-		if(isValid){
+		if (isValid) {
 			int result = CheckMove(xPosition + newX, yPosition + newY);
 			yPosition += newY;
 			xPosition += newX;
@@ -95,13 +97,14 @@ namespace MESY {
 		sf::Vector2f targetPos = originalPosition + sf::Vector2f((float)offsetX, (float)offsetY);
 		float distance = (sqrt(abs(((targetPos.x - currentPos.x) * (targetPos.x - currentPos.x)) + ((targetPos.y - currentPos.y) * (targetPos.y - currentPos.y))))); // Pythagoras to find vector difference
 		if (isMoving && distance >= 0.2f) {
-			playerSprite.move((offsetX/2) * dt, (offsetY/2) * dt);
+			playerSprite.move((offsetX / 2) * dt, (offsetY / 2) * dt);
 			playerSprite.setTextureRect(sf::IntRect(counterWalking * 24, spriteShown, 24, 32));
 			counterWalking++;
 			if (counterWalking > 7) {
 				counterWalking = 0;
 			}
-		} else {
+		}
+		else {
 			isMoving = false;
 		}
 	}

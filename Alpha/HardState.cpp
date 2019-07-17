@@ -1,3 +1,4 @@
+//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #include <sstream>
 #include "DEFINITIONS.hpp"
 #include "HardState.hpp"
@@ -6,7 +7,7 @@
 #include <iostream>
 
 namespace MESY {
-    HardState::HardState(GameDataRef data) : _data(data) {
+	HardState::HardState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Background", BOARD_BACKGROUND_FILEPATH);
 
@@ -38,8 +39,8 @@ namespace MESY {
 				//if 1 draw surface, if 0 draw under
 				_grid_upper[i][j] = 1;
 				//if 9, then its a bomb
-				if (rand() % 5 == 0 || rand() % 7 == 0) { 
-					_grid_under[i][j] = 9; 
+				if (rand() % 5 == 0 || rand() % 7 == 0) {
+					_grid_under[i][j] = 9;
 				}
 			}
 		}
@@ -57,17 +58,14 @@ namespace MESY {
 			}
 		}
 	}
-    
+
 	void HardState::Setup(int x) {
 		_player->setPos(x);
 
 		_grid_upper[x][1] = 0;
 		_grid_under[x][1] = 0; _grid_under[x - 1][1] = 0; _grid_under[x + 1][1] = 0; _grid_under[x][2] = 0; _grid_under[x - 2][2] = 0;
 		_grid_under[x - 1][2] = 0; _grid_under[x + 1][2] = 0; _grid_under[x - 2][1] = 0; _grid_under[x + 2][1] = 0; _grid_under[x + 2][2] = 0;
-		/*
-			This calculates how many mines are beside the current tile,
-			giving the tile the proper number.
-		*/
+
 		for (int i = 1; i <= 15; i++) {
 			for (int j = 1; j <= 20; j++) {
 				int n = 0;
@@ -104,9 +102,9 @@ namespace MESY {
 	}
 
 
-    void HardState::HandleInput() {
+	void HardState::HandleInput() {
 		pos = this->_data->input.GetMousePosition(this->_data->window);
-        
+
 		x = (pos.x - TILE_WIDTH) / (TILE_WIDTH);
 		y = (pos.y - 2 * TILE_WIDTH) / (TILE_WIDTH);
 		/*
@@ -116,27 +114,34 @@ namespace MESY {
 			if (x % 2 != 0 && pos.y < TILE_WIDTH * (3.5 + y - 1)) {
 				if (pos.x > (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (1.5 + y - 1)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
-				} else if(pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (4.5 + y - 1)) * TILE_WIDTH)) > pos.x){
+				}
+				else if (pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (4.5 + y - 1)) * TILE_WIDTH)) > pos.x) {
 					x -= 1;
 				}
-			}else if(x % 2 == 0 && pos.y >= TILE_WIDTH * (3.5 + y - 1)) {
+			}
+			else if (x % 2 == 0 && pos.y >= TILE_WIDTH * (3.5 + y - 1)) {
 				if (pos.x < (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (2.5 + y - 1)) * TILE_WIDTH)) > pos.x) {
 					x -= 1;
-				} else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (5.5 + y - 1)) * TILE_WIDTH)) < pos.x) {
+				}
+				else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (5.5 + y - 1)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
 				}
 			}
-		}else {
-			if (x % 2 != 0 && pos.y > TILE_WIDTH * (4.5 + y - 2 )) {
+		}
+		else {
+			if (x % 2 != 0 && pos.y > TILE_WIDTH * (4.5 + y - 2)) {
 				if (pos.x > (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (6.5 + y - 2)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
-				} else if (pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (3.5 + y - 2)) * TILE_WIDTH)) > pos.x) {
+				}
+				else if (pos.x <= (x + 1.5) * TILE_WIDTH && ((long double)gradient * pos.y + ((x - (3.5 + y - 2)) * TILE_WIDTH)) > pos.x) {
 					x -= 1;
 				}
-			}else if(x % 2 == 0 && pos.y <= TILE_WIDTH * (4.5 + y - 2)) {
+			}
+			else if (x % 2 == 0 && pos.y <= TILE_WIDTH * (4.5 + y - 2)) {
 				if (pos.x < (x + 1.5) * TILE_WIDTH && ((long double)(-gradient) * pos.y + ((x + (5.5 + y - 2)) * TILE_WIDTH)) > pos.x) {
 					x -= 1;
-				} else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(gradient) * pos.y + ((x - (2.5 + y - 2)) * TILE_WIDTH)) < pos.x) {
+				}
+				else if (pos.x >= (x + 1.5) * TILE_WIDTH && ((long double)(gradient)* pos.y + ((x - (2.5 + y - 2)) * TILE_WIDTH)) < pos.x) {
 					x += 1;
 				}
 			}
@@ -162,7 +167,8 @@ namespace MESY {
 					if (event.key.code == sf::Mouse::Right) { //Deals with the flag, that is why we have duplicates
 						if (_grid_under[x][y] != 11) {
 							_grid_under[x][y] = 11;
-						} else {
+						}
+						else {
 							_grid_under[x][y] = _under_duplicate[x][y];
 							_grid_upper[x][y] = _upper_duplicate[x][y];
 						}
@@ -196,13 +202,13 @@ namespace MESY {
 			}
 
 		}
-    }
-    void HardState::Update(float dt){
-		_player->Move(dt*6);
-    }
-    void HardState::Draw(float dt){
-        _data->window.clear(sf::Color::Yellow);
-        
+	}
+	void HardState::Update(float dt) {
+		_player->Move(dt * 6);
+	}
+	void HardState::Draw(float dt) {
+		_data->window.clear(sf::Color::Yellow);
+
 		_data->window.draw(_background);
 
 		for (int i = 1; i <= 15; i++) {
@@ -225,8 +231,9 @@ namespace MESY {
 					}
 					_triangle[i - 1][j - 1].setTextureRect(sf::IntRect(_grid_under[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
 					_triangle[i - 1][j - 1].setTexture(&_under, false);
-				} else { //Else will just draw surface texture
-					// For triangle below surface texture:
+				}
+				else { //Else will just draw surface texture
+				 // For triangle below surface texture:
 					if (i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
 						x0 = 16, y0 = 0, x1 = -16, y1 = 32, x2 = 48, y2 = 32;
 					}
@@ -250,7 +257,7 @@ namespace MESY {
 			_player->Draw();
 		}
 		_data->window.display();
-    }
+	}
 
 	void HardState::RemoveUpperTile(int xPos, int yPos) {
 		_grid_upper[xPos][yPos] = 0;
