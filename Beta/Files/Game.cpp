@@ -21,13 +21,15 @@ namespace MESY {
             newTime = this->_clock.getElapsedTime().asSeconds();
             frameTime = newTime - currentTime;
             currentTime = newTime;
-            accumulator = 0.08f;
-            
-            while(accumulator >= dt) {
-                this->_data->machine.GetActiveState()->HandleInput();
+            accumulator = 0.10f;
+
+
+			while(accumulator >= dt) {
+				this->_data->machine.GetActiveState()->HandleInput();
                 this->_data->machine.GetActiveState()->Update(dt);
                 accumulator -= dt;
             }
+
             interpolation = accumulator/dt;
             this->_data->machine.GetActiveState()->Draw(interpolation);
         }

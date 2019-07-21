@@ -19,7 +19,7 @@ namespace MESY {
         sf::Clock _clock;
 		sf::Event event;
 		sf::Vector2i pos;
-		sf::ConvexShape _triangle[15][20];
+		sf::ConvexShape _triangle;
 		sf::Sprite _restart, _background;
 		int _grid_under[17][22], _grid_upper[17][22], _under_duplicate[17][22], _upper_duplicate[17][22];
 		int x, y, x0, x1, x2, y0, y1, y2;;

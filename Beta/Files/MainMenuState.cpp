@@ -2,7 +2,7 @@
 #include "SplashState.hpp"
 #include "DEFINITIONS.hpp"
 #include "MainMenuState.hpp"
-#include "EasyState.hpp"
+#include "GameStates.hpp"
 #include "HardState.hpp"
 #include <iostream>
 
@@ -24,7 +24,7 @@ namespace MESY {
 		_hard.setScale(targetSize3.x / _hard.getLocalBounds().width, targetSize3.y / _hard.getLocalBounds().height);
 
 		_easy.setPosition(SCREEN_WIDTH / 2 - (_easy.getGlobalBounds().width / 2), 450);
-		_hard.setPosition((SCREEN_WIDTH / 2) - (_hard.getGlobalBounds().width / 2) + 10, 600);
+		_hard.setPosition((SCREEN_WIDTH / 2) - (_hard.getGlobalBounds().width / 2) + 10, 500);
 
 		_background.setScale(targetSize.x / _background.getLocalBounds().width, targetSize.y / _background.getLocalBounds().height);
 		_background.setPosition(-315, -50);
@@ -39,11 +39,11 @@ namespace MESY {
             }
             
             if(this->_data->input.IsSpriteClicked(this->_easy, sf::Mouse::Left, this->_data->window)) {
-                this->_data->machine.AddState(StateRef(new EasyState(_data)),true);
+                this->_data->machine.AddState(StateRef(new GameStates(_data, 1)),true);
                }
             
             if(this->_data->input.IsSpriteClicked(this->_hard, sf::Mouse::Left, this->_data->window)) {
-                this->_data->machine.AddState(StateRef(new HardState(_data)),true);
+                this->_data->machine.AddState(StateRef(new GameStates(_data, 2)),true);
             }
         }
     }

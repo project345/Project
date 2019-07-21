@@ -9,12 +9,11 @@ namespace MESY {
     HardState::HardState(GameDataRef data) : _data(data) {
 		this->_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		this->_data->assets.LoadTexture("Background", BOARD_BACKGROUND_FILEPATH);
+		this->_data->assets.LoadTexture("Tiles", TILES_FILEPATH);
+		this->_data->assets.LoadTexture("Trump", DONALD_TRUMP);
 
 		_restart.setTexture(this->_data->assets.GetTexture("Restart Button"));
 		_background.setTexture(this->_data->assets.GetTexture("Background"));
-
-		_under.loadFromFile(TILES_FILEPATH);
-		_upper.loadFromFile(DONALD_TRUMP);
 
 		sf::Vector2f targetSize1(100.0f, 70.0f);
 		sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
@@ -30,11 +29,7 @@ namespace MESY {
 		x = 0; x0 = 0; x1 = 0; x2 = 0;
 		y = 0; y0 = 0; y1 = 0; y2 = 0;
 
-		for (int i = 0; i < 15; i++) {
-			for (int j = 0; j < 20; j++) {
-				_triangle[i][j].setPointCount(3);
-			}
-		}
+		_triangle.setPointCount(3);
 
 		for (int i = 1; i <= 15; i++) {
 			for (int j = 1; j <= 20; j++) {
@@ -206,11 +201,9 @@ namespace MESY {
 		}
     }
     void HardState::Update(float dt){
-		_player->Move(dt*6);
+		_player->Move(dt*5);
     }
-    void HardState::Draw(float dt){
-        _data->window.clear(sf::Color::Yellow);
-        
+    void HardState::Draw(float dt){       
 		_data->window.draw(_background);
 
 		for (int i = 1; i <= 15; i++) {
@@ -220,8 +213,7 @@ namespace MESY {
 				if (_grid_under[x][y] == 9 && _grid_upper[x][y] == 0) { _grid_upper[i][j] = 0; }
 
 				//Will draw texture underneath
-				if (_grid_upper[i][j] == 0)
-				{
+				if (_grid_upper[i][j] == 0){
 					/*
 						For triangle below(hidden surface texture with numbers and shit):
 					*/
@@ -231,8 +223,8 @@ namespace MESY {
 					else if (i % 2 == 0 && j % 2 != 0 || i % 2 != 0 && j % 2 == 0) {
 						x0 = 16, y0 = 32, x1 = -16, y1 = 0, x2 = 48, y2 = 0;
 					}
-					_triangle[i - 1][j - 1].setTextureRect(sf::IntRect(_grid_under[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
-					_triangle[i - 1][j - 1].setTexture(&_under, false);
+					_triangle.setTexture(&this->_data->assets.GetTexture("Tiles"), false);
+					_triangle.setTextureRect(sf::IntRect(_grid_under[i][j] * TILE_WIDTH, 0, TILE_WIDTH, TILE_WIDTH));
 				} else { //Else will just draw surface texture
 					// For triangle below surface texture:
 					if (i % 2 != 0 && j % 2 != 0 || i % 2 == 0 && j % 2 == 0) {
@@ -241,16 +233,16 @@ namespace MESY {
 					else if (i % 2 == 0 && j % 2 != 0 || i % 2 != 0 && j % 2 == 0) {
 						x0 = 16, y0 = 32, x1 = -16, y1 = 0, x2 = 48, y2 = 0;
 					}
-					_triangle[i - 1][j - 1].setTexture(&_upper, false);
-					_triangle[i - 1][j - 1].setTextureRect(sf::IntRect((i + 1) * 30 * 4, j * 32 * 4, 60 * 4, 32 * 4));
+					_triangle.setTexture(&this->_data->assets.GetTexture("Trump"), false);
+					_triangle.setTextureRect(sf::IntRect((i + 1) * 30 * 4, j * 32 * 4, 60 * 4, 32 * 4));
 				}
-				_triangle[i - 1][j - 1].setPoint((std::size_t)0, sf::Vector2f((float)(x0), (float)(y0)));
-				_triangle[i - 1][j - 1].setPoint((std::size_t)1, sf::Vector2f((float)(x1), (float)(y1)));
-				_triangle[i - 1][j - 1].setPoint((std::size_t)2, sf::Vector2f((float)(x2), (float)(y2)));
-				_triangle[i - 1][j - 1].setPosition((float)((i + 1) * TILE_WIDTH), (float)((j + 2) * TILE_WIDTH));
-				_triangle[i - 1][j - 1].setOutlineColor(sf::Color(139, 69, 19, 200));
-				_triangle[i - 1][j - 1].setOutlineThickness(2);
-				_data->window.draw(_triangle[i - 1][j - 1]);
+				_triangle.setPoint((std::size_t)0, sf::Vector2f((float)(x0), (float)(y0)));
+				_triangle.setPoint((std::size_t)1, sf::Vector2f((float)(x1), (float)(y1)));
+				_triangle.setPoint((std::size_t)2, sf::Vector2f((float)(x2), (float)(y2)));
+				_triangle.setPosition((float)((i + 1) * TILE_WIDTH), (float)((j + 2) * TILE_WIDTH));
+				_triangle.setOutlineColor(sf::Color(139, 69, 19, 200));
+				_triangle.setOutlineThickness(2);
+				_data->window.draw(_triangle);
 			}
 		}
 		_data->window.draw(_restart);

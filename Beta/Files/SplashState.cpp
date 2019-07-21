@@ -38,12 +38,15 @@ namespace MESY {
 	}
     
     void SplashState::HandleInput() {
-        sf::Event event;
-        
         while(_data->window.pollEvent(event)) {
             if(sf::Event::Closed == event.type) {
                 _data->window.close();
             }
+			if (event.type == sf::Event::KeyPressed) {
+				if (event.key.code == sf::Keyboard::Escape) {
+					this->_data->machine.AddState(StateRef(new MainMenuState(_data)), true);
+				}
+			}
         }
     }
 

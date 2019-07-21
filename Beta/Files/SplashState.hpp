@@ -5,9 +5,9 @@
 #include "Game.hpp"
 
 namespace MESY {
-    class MediumState : public State {
+    class SplashState : public State {
     public:
-        MediumState(GameDataRef data);
+        SplashState(GameDataRef data);
         void HandleInput();
         void Update(float dt);
         void Draw(float dt);
@@ -15,8 +15,8 @@ namespace MESY {
     private:
         GameDataRef _data;
         sf::Clock _clock;
-        sf::Sprite _hidden;
-        sf::Sprite _surface;
-        sf::Sprite _restart;
+		sf::Event event;
+        sf::Sprite _background_intro1, _background_intro2, _background_intro3;
+		sf::Sprite _background_tit1, _background_tit2, _background_tit3;
     };
 }
