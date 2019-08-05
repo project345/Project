@@ -136,8 +136,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\AssetManager.cpp" />
-    <ClCompile Include="..\EasyState.cpp" />
     <ClCompile Include="..\Game.cpp" />
+    <ClCompile Include="..\GameStates.cpp" />
     <ClCompile Include="..\HardState.cpp" />
     <ClCompile Include="..\InputManager.cpp" />
     <ClCompile Include="..\main.cpp" />
@@ -149,8 +149,8 @@
   <ItemGroup>
     <ClInclude Include="..\AssetManager.hpp" />
     <ClInclude Include="..\DEFINITIONS.hpp" />
-    <ClInclude Include="..\EasyState.hpp" />
     <ClInclude Include="..\Game.hpp" />
+    <ClInclude Include="..\GameStates.hpp" />
     <ClInclude Include="..\HardState.hpp" />
     <ClInclude Include="..\InputManager.hpp" />
     <ClInclude Include="..\MainMenuState.hpp" />

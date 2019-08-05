@@ -1,19 +1,19 @@
-//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #pragma once
+
 #include <map>
 #include <SFML/Graphics.hpp>
 #include "DEFINITIONS.hpp"
 
 namespace MESY {
-	class AssetManager {
-	public:
-		void LoadTexture(std::string name, std::string fileName);
-		sf::Texture& GetTexture(std::string name);
-		void LoadFont(std::string name, std::string fileName);
-		sf::Font& GetFont(std::string name);
-
-	private:
-		std::map<std::string, sf::Texture> _textures;
-		std::map<std::string, sf::Font> _fonts;
-	};
+    class AssetManager {
+    public:
+        void LoadTexture(std::string name, std::string fileName);
+        sf::Texture &GetTexture(std::string name);
+        void LoadFont(std::string name, std::string fileName);
+        sf::Font &GetFont(std::string name);
+        
+    private:
+        std::map<std::string, sf::Texture> _textures;
+        std::map<std::string, sf::Font> _fonts;
+    };
 }

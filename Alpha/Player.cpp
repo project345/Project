@@ -1,18 +1,11 @@
-//@author Max Stewart //1086706, Elbert Alcantara //4435223, Sarang Han //5098495
 #include "Game.hpp"
 #include "iostream"
 #include "DEFINITIONS.hpp"
 #include "Player.hpp"
-#include <cmath>
 
 namespace MESY {
 
-	Player::Player(GameDataRef data, int gridUnder[][22]) : _data(data) {
-		for (int i = 0; i < GRID_WIDTH; i++) {
-			for (int j = 0; j < GRID_HEIGHT; j++) {
-				_playerPosInArray[i][j] = gridUnder[i][j];
-			}
-		}
+	Player::Player(GameDataRef data) : _data(data) {
 
 		sf::Texture texture;
 		sf::IntRect rectSourceSprite(300, 0, 123, 123);
@@ -27,6 +20,15 @@ namespace MESY {
 
 		isMoving = false;
 		chosenStart = false;
+		isExplosion = false;
+		spriteShown = false;
+
+		xPosition = 0;
+		yPosition = 0;
+		offsetX = 0;
+		offsetY = 0;
+
+		playerSprite.setPosition((float)((5) * TILE_WIDTH + 5), (float)((4) * TILE_WIDTH));
 	}
 
 	bool Player::PlayerMoving() {
@@ -41,7 +43,12 @@ namespace MESY {
 		chosenStart = true;
 		xPosition = x;
 		yPosition = 1;
-		playerSprite.setPosition((float)((xPosition + 1) * TILE_WIDTH + 5), (float)((yPosition + 2) * TILE_WIDTH));
+		//playerSprite.setPosition((float)((xPosition + 1)* TILE_WIDTH + 5), (float)((yPosition + 2)* TILE_WIDTH));
+		playerSprite.setPosition((float)((xPosition + 1) * TILE_WIDTH + 5), (float)(0) * TILE_WIDTH);
+		offsetY = 3 * TILE_WIDTH;
+		isMoving = true;
+		originalPosition = playerSprite.getPosition();
+		dtModifier = 8;
 	}
 
 	sf::Vector2i Player::GetPos()
@@ -49,15 +56,12 @@ namespace MESY {
 		return sf::Vector2i(xPosition, yPosition);
 	}
 
-	int Player::CheckMove(int newX, int newY) {
-		if (_playerPosInArray[newX][newY] == 9) {
+	void Player::Explode(int newX, int newY) {
 			isExplosion = true;
 			explosionSprite.setPosition((float)(((newX + 1) * TILE_WIDTH) - (32 / 2)), (float)(((newY + 2) * TILE_WIDTH) - (32 / 2)));
-		}
-		return _playerPosInArray[newX][newY];
 	}
 
-	int Player::MovePlayer(int newX, int newY, int spriteShown) {
+	void Player::MovePlayer(int newX, int newY, int spriteShown) {
 		bool isValid = false;
 		if (newY == -1 && yPosition > 1) {
 			isValid = true;
@@ -71,8 +75,7 @@ namespace MESY {
 		if (newX == 1 && xPosition < BOARD_WIDTH) {
 			isValid = true;
 		}
-		if (isValid) {
-			int result = CheckMove(xPosition + newX, yPosition + newY);
+		if(isValid){
 			yPosition += newY;
 			xPosition += newX;
 			this->spriteShown = spriteShown;
@@ -80,13 +83,14 @@ namespace MESY {
 			offsetX = newX * TILE_WIDTH;
 			offsetY = newY * TILE_WIDTH;
 			originalPosition = playerSprite.getPosition();
-			return result;
+			dtModifier = 4;
 		}
-		return 0;
 	}
 
 	void Player::Draw() {
-		this->_data->window.draw(playerSprite);
+		if (!isDead) {
+			this->_data->window.draw(playerSprite);
+		}
 		if (isExplosion) {
 			this->_data->window.draw(explosionSprite);
 		}
@@ -97,15 +101,27 @@ namespace MESY {
 		sf::Vector2f targetPos = originalPosition + sf::Vector2f((float)offsetX, (float)offsetY);
 		float distance = (sqrt(abs(((targetPos.x - currentPos.x) * (targetPos.x - currentPos.x)) + ((targetPos.y - currentPos.y) * (targetPos.y - currentPos.y))))); // Pythagoras to find vector difference
 		if (isMoving && distance >= 0.2f) {
-			playerSprite.move((offsetX / 2) * dt, (offsetY / 2) * dt);
-			playerSprite.setTextureRect(sf::IntRect(counterWalking * 24, spriteShown, 24, 32));
-			counterWalking++;
+			playerSprite.move((offsetX/2) * (dt / dtModifier), (offsetY/2) * (dt / dtModifier));
+			playerSprite.setTextureRect(sf::IntRect((int)counterWalking * 24, spriteShown, 24, 32));
+			counterWalking += 0.5;
 			if (counterWalking > 7) {
 				counterWalking = 0;
 			}
-		}
-		else {
+		} else {
 			isMoving = false;
+		}
+
+		if (isExplosion) {
+			isDead = true;
+			explosionSprite.setTextureRect(sf::IntRect((int)explosionTexture * 64, (int)explosionTextureVertical * 64, 64, 64));
+			explosionTexture += 0.4;
+			if (explosionTexture > 4) {
+				explosionTexture = 0;
+				explosionTextureVertical += 0.4;
+			}
+			if (explosionTextureVertical > 4) {
+				isExplosion = false;
+			}
 		}
 	}
 }

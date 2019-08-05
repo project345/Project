@@ -5,8 +5,8 @@
 
 #include <iostream>
 
-namespace Sarang {
-    MediumState::MediumState(GameDataRef data) : _data(data) { 
+namespace Sarang{
+    MediumState::MediumState(GameDataRef data) : _data(data){ 
 		_data->assets.LoadTexture("Restart Button", RESTART_FILEPATH);
 		_data->assets.LoadTexture("under", TILES_FILEPATH);
 		_data->assets.LoadTexture("upper", DESERT_FILEPATH);
@@ -19,32 +19,33 @@ namespace Sarang {
 		_surface.setPosition(0, _surface.getGlobalBounds().height / 2);
 	}
     
-    void MediumState::HandleInput() {
+    void MediumState::HandleInput(){
         sf::Event event;
         
-        while(_data->window.pollEvent(event)) {
-            if(sf::Event::Closed == event.type) {
+        while(_data->window.pollEvent(event)){
+            if(sf::Event::Closed == event.type){
                 _data->window.close();
             }
             
-            if(this->_data->input.IsSpriteClicked(this->_restart, sf::Mouse::Left, this->_data->window)) {
+            if(this->_data->input.IsSpriteClicked(this->_restart, sf::Mouse::Left, this->_data->window)){
                 this->_data->machine.AddState(StateRef(new MainMenuState(_data)),true);
             }
             
-            if(sf::Event::MouseButtonPressed == event.type) {
+            if(sf::Event::MouseButtonPressed == event.type){
                 
             }
         }
     }
-    void MediumState::Update(float dt) {
+    void MediumState::Update(float dt){
         
     }
-
-    void MediumState::Draw(float dt) {
+    void MediumState::Draw(float dt){
         _data->window.clear(sf::Color::Cyan);
+        
         _data->window.draw(_restart);
         _data->window.draw(_hidden);
         _data->window.draw(_surface);
         _data->window.display();
     }
 }
+
