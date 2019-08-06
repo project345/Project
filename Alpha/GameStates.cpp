@@ -18,9 +18,10 @@ namespace MESY {
 		_restart.setTexture(this->_data->assets.GetTexture("Restart Button"));
 		_background.setTexture(this->_data->assets.GetTexture("Background"));
 
-		sf::Vector2f targetSize1(100.0f, 70.0f);
+		sf::Vector2f targetSize1(75.0f, 52.5f);
 		_restart.setScale(targetSize1.x / _restart.getLocalBounds().width, targetSize1.y / _restart.getLocalBounds().height);
-		_restart.setPosition(SCREEN_WIDTH / 2 - (_restart.getGlobalBounds().width / 2), 13);
+		_restart.setPosition(10, 10);
+		//_restart.setPosition(SCREEN_WIDTH / 2 - (_restart.getGlobalBounds().width / 2), 13);
 
 		sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
 		_background.setScale(targetSize.x / _background.getLocalBounds().width, targetSize.y / _background.getLocalBounds().height);
@@ -61,17 +62,16 @@ namespace MESY {
 					}
 				}
 			}
-
-			for (int i = 0; i < 17; i++) {
-				for (int j = 0; j < 22; j++) {
-					_under_duplicate[i][j] = _grid_under[i][j];
-				}
+		}
+		for (int i = 0; i < 17; i++) {
+			for (int j = 0; j < 22; j++) {
+				_under_duplicate[i][j] = _grid_under[i][j];
 			}
+		}
 
-			for (int i = 0; i < 17; i++) {
-				for (int j = 0; j < 22; j++) {
-					_upper_duplicate[i][j] = _grid_upper[i][j];
-				}
+		for (int i = 0; i < 17; i++) {
+			for (int j = 0; j < 22; j++) {
+				_upper_duplicate[i][j] = _grid_upper[i][j];
 			}
 		}
 	}
@@ -198,29 +198,30 @@ namespace MESY {
 					}
 
 					if (event.key.code == sf::Mouse::Right) { //Deals with the flag, that is why we have duplicates
-						if (_grid_under[x][y] != 11) {
+						if (_grid_under[x][y] != 11 && _grid_upper[x][y] != 0) {
 							_grid_under[x][y] = 11;
+							_grid_upper[x][y] = 0;
+							std::cout << _under_duplicate[x][y];
 						}
-						else {
+						else if (_grid_under[x][y] == 11) {
 							_grid_under[x][y] = _under_duplicate[x][y];
 							_grid_upper[x][y] = _upper_duplicate[x][y];
 						}
-						_grid_upper[x][y] = 0;
 					}
 				}
 			}
 			int result = 0;
 			if (event.type == sf::Event::KeyPressed && !_player->PlayerMoving() && _player->PlayerChosen()) {
-				if (event.key.code == sf::Keyboard::W) {
+				if (event.key.code == sf::Keyboard::W && _grid_under[x][y] != 11 && _grid_under[x][y-1] != 11) {
 					_player->MovePlayer(0, -1, 32);
 				}
-				if (event.key.code == sf::Keyboard::S) {
+				if (event.key.code == sf::Keyboard::S && _grid_under[x][y] != 11 && _grid_under[x][y+1] != 11) {
 					_player->MovePlayer(0, 1, 0);
 				}
-				if (event.key.code == sf::Keyboard::A) {
+				if (event.key.code == sf::Keyboard::A && _grid_under[x][y] != 11 && _grid_under[x-1][y] != 11) {
 					_player->MovePlayer(-1, 0, 64);
 				}
-				if (event.key.code == sf::Keyboard::D) {
+				if (event.key.code == sf::Keyboard::D && _grid_under[x][y] != 11 && _grid_under[x+1][y] != 11) {
 					_player->MovePlayer(1, 0, 96);
 				}
 				sf::Vector2i currentPos = _player->GetPos();

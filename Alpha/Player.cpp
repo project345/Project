@@ -43,12 +43,11 @@ namespace MESY {
 		chosenStart = true;
 		xPosition = x;
 		yPosition = 1;
-		//playerSprite.setPosition((float)((xPosition + 1)* TILE_WIDTH + 5), (float)((yPosition + 2)* TILE_WIDTH));
 		playerSprite.setPosition((float)((xPosition + 1) * TILE_WIDTH + 5), (float)(0) * TILE_WIDTH);
 		offsetY = 3 * TILE_WIDTH;
 		isMoving = true;
 		originalPosition = playerSprite.getPosition();
-		dtModifier = 8;
+		dtModifier = 12;
 	}
 
 	sf::Vector2i Player::GetPos()
@@ -83,7 +82,7 @@ namespace MESY {
 			offsetX = newX * TILE_WIDTH;
 			offsetY = newY * TILE_WIDTH;
 			originalPosition = playerSprite.getPosition();
-			dtModifier = 4;
+			dtModifier = 6;
 		}
 	}
 
@@ -117,7 +116,7 @@ namespace MESY {
 			explosionTexture += 0.4;
 			if (explosionTexture > 4) {
 				explosionTexture = 0;
-				explosionTextureVertical += 0.4;
+				explosionTextureVertical += 1;
 			}
 			if (explosionTextureVertical > 4) {
 				isExplosion = false;
