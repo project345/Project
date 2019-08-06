@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include "iostream"
 #include "DEFINITIONS.hpp"
+#include "SplashState.hpp"
 #include "Player.hpp"
 
 namespace MESY {
@@ -113,13 +114,14 @@ namespace MESY {
 		if (isExplosion) {
 			isDead = true;
 			explosionSprite.setTextureRect(sf::IntRect((int)explosionTexture * 64, (int)explosionTextureVertical * 64, 64, 64));
-			explosionTexture += 0.4;
+			explosionTexture += 0.4f;
 			if (explosionTexture > 4) {
 				explosionTexture = 0;
 				explosionTextureVertical += 1;
 			}
 			if (explosionTextureVertical > 4) {
 				isExplosion = false;
+				_data->machine.AddState(StateRef(new SplashState(this->_data, "gameOver")));
 			}
 		}
 	}

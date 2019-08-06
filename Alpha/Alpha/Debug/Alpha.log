@@ -1,13 +1,1 @@
-﻿  AssetManager.cpp
-  Game.cpp
-  GameStates.cpp
-  HardState.cpp
-  InputManager.cpp
-  main.cpp
-  MainMenuState.cpp
-  Player.cpp
-  SplashState.cpp
-  StateMachine.cpp
-  Generating Code...
-C:\Users\maxst\Desktop\COSC345Repo\Alpha\Player.cpp(116,27): warning C4305:  '+=': truncation from 'double' to 'float'
-  Alpha.vcxproj -> C:\Users\maxst\Desktop\COSC345Repo\Alpha\Debug\Alpha.exe
+﻿

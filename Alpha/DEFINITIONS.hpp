@@ -15,6 +15,7 @@
 
 #define SPLASH_INTRO1 "splashscreen1.png"
 #define SPLASH_INTRO2 "splashscreen2.png"
+#define GAME_OVER_SCREEN "gameOver.png"
 
 #define SPLASH_TITLE1 "Title1.png"
 #define SPLASH_TITLE2 "Title2.png"
