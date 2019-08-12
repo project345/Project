@@ -46,7 +46,14 @@ namespace MESY {
 			_background_gameOver.setScale(targetSize.x / _background_gameOver.getLocalBounds().width, targetSize.y / _background_gameOver.getLocalBounds().height);
 			_background_gameOver.setPosition(-315, -50);
 		}
-		
+		else if (strcmp(mode, "gameWon") == 0) {
+			_data->assets.LoadTexture("Game Won", GAME_WON_SCREEN);
+			_background_gameWon.setTexture(this->_data->assets.GetTexture("Game Won"));
+
+			sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
+			_background_gameWon.setScale(targetSize.x / _background_gameWon.getLocalBounds().width, targetSize.y / _background_gameWon.getLocalBounds().height);
+			_background_gameWon.setPosition(-315, -50);
+		}
 	}
     
     void SplashState::HandleInput() {
@@ -89,6 +96,9 @@ namespace MESY {
 		}
 		else if (strcmp(_mode, "gameOver") == 0) {
 			_data->window.draw(_background_gameOver);
+		}
+		else if (strcmp(_mode, "gameWon") == 0) {
+			_data->window.draw(_background_gameWon);
 		}
         _data->window.display();
     }

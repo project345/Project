@@ -10,9 +10,11 @@ namespace MESY {
     }
     
     void Game::Run(){
+		
 		music.openFromFile(MAIN_MUSIC);
 		music.play();
 		music.setLoop(true);
+
         float newTime, frameTime, interpolation, accumulator, currentTime;
         
 		currentTime = this->_clock.getElapsedTime().asSeconds();
