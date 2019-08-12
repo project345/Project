@@ -13,6 +13,7 @@ namespace MESY {
         void Update(float dt);
         void Draw(float dt);
 		void Setup(int x);
+		void Win();
         
     private:
         GameDataRef _data;
@@ -25,5 +26,6 @@ namespace MESY {
 		int _grid_under[17][22], _grid_upper[17][22], _under_duplicate[17][22], _upper_duplicate[17][22];
 		int x, y, x0, x1, x2, y0, y1, y2, GameState;
 		double gradient = 48 / 32;
+		bool hasWon = false;
     };
 }

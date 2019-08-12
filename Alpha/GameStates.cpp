@@ -212,22 +212,26 @@ namespace MESY {
 			}
 			int result = 0;
 			if (event.type == sf::Event::KeyPressed && !_player->PlayerMoving() && _player->PlayerChosen()) {
-				if (event.key.code == sf::Keyboard::W && _grid_under[x][y] != 11 && _grid_under[x][y-1] != 11) {
+				if (event.key.code == sf::Keyboard::W && _grid_under[x][y] != 11 && _grid_under[x][y-1] != 11 && !hasWon) {
 					_player->MovePlayer(0, -1, 32);
 				}
-				if (event.key.code == sf::Keyboard::S && _grid_under[x][y] != 11 && _grid_under[x][y+1] != 11) {
+				if (event.key.code == sf::Keyboard::S && _grid_under[x][y] != 11 && _grid_under[x][y+1] != 11 && !hasWon) {
 					_player->MovePlayer(0, 1, 0);
 				}
-				if (event.key.code == sf::Keyboard::A && _grid_under[x][y] != 11 && _grid_under[x-1][y] != 11) {
+				if (event.key.code == sf::Keyboard::A && _grid_under[x][y] != 11 && _grid_under[x-1][y] != 11 && !hasWon) {
 					_player->MovePlayer(-1, 0, 64);
 				}
-				if (event.key.code == sf::Keyboard::D && _grid_under[x][y] != 11 && _grid_under[x+1][y] != 11) {
+				if (event.key.code == sf::Keyboard::D && _grid_under[x][y] != 11 && _grid_under[x+1][y] != 11 && !hasWon) {
 					_player->MovePlayer(1, 0, 96);
 				}
 				sf::Vector2i currentPos = _player->GetPos();
 				x = currentPos.x;
 				y = currentPos.y;
 				_grid_upper[x][y] = 0;
+
+				if (y == 20) {
+					Win();
+				}
 				if (_grid_under[x][y] == 9) { _player->Explode(x, y); }
 			}
 		}
@@ -308,4 +312,9 @@ namespace MESY {
 		}
         _data->window.display();
     }
+
+	void GameStates::Win() {
+		hasWon = true;
+		_player->MoveOff(x);
+	}
 }

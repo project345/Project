@@ -123,11 +123,20 @@ namespace MESY {
 				isExplosion = false;
 				sf::Clock clock;
 				float elapsedTime = clock.getElapsedTime().asSeconds();
-				while (elapsedTime <= 5) {
+				while (elapsedTime <= 3) {
 					elapsedTime = clock.getElapsedTime().asSeconds();
 				}
 				_data->machine.AddState(StateRef(new SplashState(this->_data, "gameOver")));
 			}
 		}
+	}
+
+	void Player::MoveOff(int x) {
+		xPosition = x;
+		yPosition = 20;
+		offsetY = 23 * TILE_WIDTH;
+		isMoving = true;
+		originalPosition = playerSprite.getPosition();
+		dtModifier = 30;
 	}
 }

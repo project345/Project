@@ -13,6 +13,7 @@ namespace MESY {
 		void Explode(int newX, int newY);
 		bool PlayerMoving();
 		bool PlayerChosen();
+		void MoveOff(int x);
 		
 	private:
 		GameDataRef _data;
