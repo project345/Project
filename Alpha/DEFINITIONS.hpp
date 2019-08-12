@@ -13,6 +13,7 @@
 
 #define SPLASH_INTRO_SHOW_TIME 9.8
 
+#define MAIN_MUSIC "mainMusic.wav"
 #define SPLASH_INTRO1 "splashscreen1.png"
 #define SPLASH_INTRO2 "splashscreen2.png"
 #define GAME_OVER_SCREEN "gameOver.png"

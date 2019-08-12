@@ -121,6 +121,11 @@ namespace MESY {
 			}
 			if (explosionTextureVertical > 4) {
 				isExplosion = false;
+				sf::Clock clock;
+				float elapsedTime = clock.getElapsedTime().asSeconds();
+				while (elapsedTime <= 5) {
+					elapsedTime = clock.getElapsedTime().asSeconds();
+				}
 				_data->machine.AddState(StateRef(new SplashState(this->_data, "gameOver")));
 			}
 		}

@@ -244,7 +244,10 @@ namespace MESY {
 			for (int j = 1; j <= 20; j++) {
 				//If tile underneath is 9 then it is a mine, and upper grid == 0, hence will show all 
 					//Tiles underneath the surface texture, ending the game
-				if (_grid_under[x][y] == 9 && _grid_upper[x][y] == 0) { _grid_upper[i][j] = 0; }// Restart Game
+				if (_grid_under[x][y] == 9 && _grid_upper[x][y] == 0) { 
+					_grid_upper[i][j] = 0; 
+					_player->Explode(x, y);
+				}// Restart Game
 				
 				if (GameState == 1) {
 					//Will draw texture underneath
