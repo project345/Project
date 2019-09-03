@@ -1,12 +1,12 @@
 #pragma once
 
-#define SCREEN_HEIGHT 32*25
-#define SCREEN_WIDTH 32*19
+#define SCREEN_HEIGHT 32*29
+#define SCREEN_WIDTH 32*23
 
-#define GRID_WIDTH 17
-#define GRID_HEIGHT 22
-#define BOARD_WIDTH 15
-#define BOARD_HEIGHT 20
+#define GRID_WIDTH 21
+#define GRID_HEIGHT 26
+#define BOARD_WIDTH 19
+#define BOARD_HEIGHT 24
 #define GRID_SIZE 20
 
 #define TILE_WIDTH 32

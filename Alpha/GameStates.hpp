@@ -23,7 +23,7 @@ namespace MESY {
 		sf::Event event;
 		sf::Vector2i pos;
 		sf::Sprite _restart, _background;
-		int _grid_under[17][22], _grid_upper[17][22], _under_duplicate[17][22], _upper_duplicate[17][22];
+		int _grid_under[GRID_WIDTH][GRID_HEIGHT], _grid_upper[GRID_WIDTH][GRID_HEIGHT], _under_duplicate[GRID_WIDTH][GRID_HEIGHT], _upper_duplicate[GRID_WIDTH][GRID_HEIGHT];
 		int x, y, x0, x1, x2, y0, y1, y2, GameState;
 		double gradient = 48 / 32;
 		bool hasWon = false;

@@ -16,18 +16,18 @@ namespace MESY {
 		_hard.setTexture(this->_data->assets.GetTexture("Hard Button"));
 		_background.setTexture(this->_data->assets.GetTexture("Background"));
 
-		sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
-		sf::Vector2f targetSize1((float)(960.0f / 7), (float)(480.0f / 7));
+		sf::Vector2f targetSize1((float)(1920.0f / 1.3), (float)(1280.0f / 1.3));
+		sf::Vector2f targetSize2((float)(960.0f / 7), (float)(480.0f / 7));
 		sf::Vector2f targetSize3((float)(550.0f / 2), (float)(413.0f / 2));
 
-		_easy.setScale(targetSize1.x / _easy.getLocalBounds().width, targetSize1.y / _easy.getLocalBounds().height);
+		_easy.setScale(targetSize2.x / _easy.getLocalBounds().width, targetSize2.y / _easy.getLocalBounds().height);
 		_hard.setScale(targetSize3.x / _hard.getLocalBounds().width, targetSize3.y / _hard.getLocalBounds().height);
 
 		_easy.setPosition(SCREEN_WIDTH / 2 - (_easy.getGlobalBounds().width / 2), 450);
 		_hard.setPosition((SCREEN_WIDTH / 2) - (_hard.getGlobalBounds().width / 2) + 10, 500);
 
-		_background.setScale(targetSize.x / _background.getLocalBounds().width, targetSize.y / _background.getLocalBounds().height);
-		_background.setPosition(-315, -50);
+		_background.setScale(targetSize1.x / _background.getLocalBounds().width, targetSize1.y / _background.getLocalBounds().height);
+		_background.setPosition(-360, -50);
     }
          
     void MainMenuState::HandleInput() {

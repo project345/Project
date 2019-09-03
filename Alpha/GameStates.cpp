@@ -23,7 +23,7 @@ namespace MESY {
 		_restart.setPosition(10, 10);
 		//_restart.setPosition(SCREEN_WIDTH / 2 - (_restart.getGlobalBounds().width / 2), 13);
 
-		sf::Vector2f targetSize((float)(1920.0f / 1.5), (float)(1280.0f / 1.5));
+		sf::Vector2f targetSize((float)(1920.0f / 1.3), (float)(1280.0f / 1.3));
 		_background.setScale(targetSize.x / _background.getLocalBounds().width, targetSize.y / _background.getLocalBounds().height);
 		_background.setPosition(-315, -50);
 
@@ -35,8 +35,8 @@ namespace MESY {
 		if (GameState == 1) {
 			_Shape.setPointCount(4);
 
-			for (int i = 1; i <= 15; i++) {
-				for (int j = 1; j <= 20; j++) {
+			for (int i = 1; i <= BOARD_WIDTH; i++) {
+				for (int j = 1; j <= BOARD_HEIGHT; j++) {
 					_grid_upper[i][j] = (rand() % 9) + 12;
 					if (rand() % 3 == 0) {
 						_grid_under[i][j] = 9;
@@ -63,14 +63,14 @@ namespace MESY {
 				}
 			}
 		}
-		for (int i = 0; i < 17; i++) {
-			for (int j = 0; j < 22; j++) {
+		for (int i = 0; i < GRID_WIDTH; i++) {
+			for (int j = 0; j < GRID_HEIGHT; j++) {
 				_under_duplicate[i][j] = _grid_under[i][j];
 			}
 		}
 
-		for (int i = 0; i < 17; i++) {
-			for (int j = 0; j < 22; j++) {
+		for (int i = 0; i < GRID_WIDTH; i++) {
+			for (int j = 0; j < GRID_HEIGHT; j++) {
 				_upper_duplicate[i][j] = _grid_upper[i][j];
 			}
 		}
@@ -94,8 +94,8 @@ namespace MESY {
 			This calculates how many mines are beside the current tile,
 			giving the tile the proper number.
 		*/
-		for (int i = 1; i <= 15; i++) {
-			for (int j = 1; j <= 20; j++) {
+		for (int i = 1; i <= BOARD_WIDTH; i++) {
+			for (int j = 1; j <= BOARD_HEIGHT; j++) {
 				int n = 0;
 				if (_grid_under[i][j] == 9) continue;
 				if (_grid_under[i + 1][j] == 9) n++;
@@ -244,8 +244,8 @@ namespace MESY {
     void GameStates::Draw(float dt) {
         _data->window.draw(_background);
 
-		for (int i = 1; i <= 15; i++) {
-			for (int j = 1; j <= 20; j++) {
+		for (int i = 1; i <= BOARD_WIDTH; i++) {
+			for (int j = 1; j <= BOARD_HEIGHT; j++) {
 				//If tile underneath is 9 then it is a mine, and upper grid == 0, hence will show all 
 					//Tiles underneath the surface texture, ending the game
 				if (_grid_under[x][y] == 9 && _grid_upper[x][y] == 0) { 
