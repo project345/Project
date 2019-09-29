@@ -3,8 +3,6 @@
 #include <sstream>
 #include <memory>
 #include <string>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
@@ -25,7 +23,6 @@ namespace MESY {
         Game(int width, int height, std::string title);
 
 	 private:
-		 sf::Music music;
 		const float dt = 1.0f/60.0f;
         sf::Clock _clock;
 		GameDataRef _data = std::make_shared<GameData>();       

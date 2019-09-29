@@ -11,9 +11,10 @@
 
 #define TILE_WIDTH 32
 
-#define SPLASH_INTRO_SHOW_TIME 9.8
+#define SPLASH_INTRO_SHOW_TIME 45
 
 #define MAIN_MUSIC "mainMusic.wav"
+#define INTRO_MUSIC "intro_narration.wav"
 #define SPLASH_INTRO1 "splashscreen1.png"
 #define SPLASH_INTRO2 "splashscreen2.png"
 #define GAME_OVER_SCREEN "gameOver.png"
@@ -23,13 +24,19 @@
 #define SPLASH_TITLE2 "Title2.png"
 #define SPLASH_TITLE3 "Title3.png"
 
-#define DESERT_FILEPATH "desert.jpg"
-#define BOARD_BACKGROUND_FILEPATH "boardbackground.jpg"
-#define TILES_FILEPATH "tiles.jpg"
-#define DONALD_TRUMP "donald2.jpg"
+#define INTRO1 "intro_story1.png"
+#define INTRO2 "intro_story2.png"
+#define INTRO3 "intro_story3.png"
+#define INTRO4 "intro_story4.png"
+#define INTRO5 "intro_story5.png"
+#define ESCINTRO "escintro.png"
+
+#define DESERT_FILEPATH "desert.png"
+#define BOARD_BACKGROUND_FILEPATH "boardbackground.png"
+#define TILES_FILEPATH "tiles.png"
 #define MENU_IMAGE_FILEPATH "wall2.jpg"
-#define EASY_MAINMENU_FILEPATH "easy.png"
-#define HARD_MAINMENU_FILEPATH "hard.png"
-#define RESTART_FILEPATH "suicide.jpg"
+#define EASY_MAINMENU_FILEPATH "startgame.png"
+#define RESTART_FILEPATH "endgame.png"
 #define PLAYER_WALKING "walking.png"
 #define EXPLOSION_FILEPATH "explosion.png"
+#define LIFE_COUNT "lifecount.png"

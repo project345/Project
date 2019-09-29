@@ -10,7 +10,7 @@ namespace MESY {
 		void Move(float dt);
 		void setPos(int x);
 		sf::Vector2i GetPos();
-		void Explode(int newX, int newY);
+		void Explode(int newX, int newY, bool life_is_zero);
 		bool PlayerMoving();
 		bool PlayerChosen();
 		void MoveOff(int x);

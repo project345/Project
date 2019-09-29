@@ -1,8 +1,7 @@
 #include "Game.hpp"
 #include "SplashState.hpp"
 
-
-namespace MESY {
+namespace MESY {  
     Game::Game(int width, int height, std::string title) {
         _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
         _data->machine.AddState(StateRef (new SplashState(this->_data, "intro")));
@@ -10,16 +9,13 @@ namespace MESY {
     }
     
     void Game::Run(){
-		
-		music.openFromFile(MAIN_MUSIC);
-		music.play();
-		music.setLoop(true);
 
         float newTime, frameTime, interpolation, accumulator, currentTime;
         
 		currentTime = this->_clock.getElapsedTime().asSeconds();
         accumulator = 0.0f;
         
+		
         while(this->_data->window.isOpen()) {
             this->_data->machine.ProcessStateChanges();
             
@@ -29,7 +25,7 @@ namespace MESY {
             accumulator = 0.10f;
 
 
-			while(accumulator >= dt) {
+			while (accumulator >= dt) {
 				this->_data->machine.GetActiveState()->HandleInput();
                 this->_data->machine.GetActiveState()->Update(dt);
                 accumulator -= dt;
@@ -38,5 +34,5 @@ namespace MESY {
             interpolation = accumulator/dt;
             this->_data->machine.GetActiveState()->Draw(interpolation);
         }
-    }
+    }		
 }

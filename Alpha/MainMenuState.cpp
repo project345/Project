@@ -1,30 +1,31 @@
 #include <sstream>
+#include <iostream>
 #include "SplashState.hpp"
 #include "DEFINITIONS.hpp"
 #include "MainMenuState.hpp"
 #include "GameStates.hpp"
-#include "HardState.hpp"
-#include <iostream>
+
 
 namespace MESY {
     MainMenuState::MainMenuState(GameDataRef data) : _data(data) {
-		this->_data->assets.LoadTexture("Easy Button", EASY_MAINMENU_FILEPATH);
-		this->_data->assets.LoadTexture("Hard Button", HARD_MAINMENU_FILEPATH);
+
+		music.openFromFile(MAIN_MUSIC);
+		music.setVolume(50);
+		music.play();
+		music.setLoop(true);
+
+		this->_data->assets.LoadTexture("Start Game Button", EASY_MAINMENU_FILEPATH);
 		this->_data->assets.LoadTexture("Background", MENU_IMAGE_FILEPATH);
 
-		_easy.setTexture(this->_data->assets.GetTexture("Easy Button"));
-		_hard.setTexture(this->_data->assets.GetTexture("Hard Button"));
+
+		_startgame.setTexture(this->_data->assets.GetTexture("Start Game Button"));
 		_background.setTexture(this->_data->assets.GetTexture("Background"));
 
 		sf::Vector2f targetSize1((float)(1920.0f / 1.3), (float)(1280.0f / 1.3));
-		sf::Vector2f targetSize2((float)(960.0f / 7), (float)(480.0f / 7));
-		sf::Vector2f targetSize3((float)(550.0f / 2), (float)(413.0f / 2));
+		sf::Vector2f targetSize2((float)(960.0f / 2.5), (float)(480.0f / 2.5));
 
-		_easy.setScale(targetSize2.x / _easy.getLocalBounds().width, targetSize2.y / _easy.getLocalBounds().height);
-		_hard.setScale(targetSize3.x / _hard.getLocalBounds().width, targetSize3.y / _hard.getLocalBounds().height);
-
-		_easy.setPosition(SCREEN_WIDTH / 2 - (_easy.getGlobalBounds().width / 2), 450);
-		_hard.setPosition((SCREEN_WIDTH / 2) - (_hard.getGlobalBounds().width / 2) + 10, 500);
+		_startgame.setScale(targetSize2.x / _startgame.getLocalBounds().width, targetSize2.y / _startgame.getLocalBounds().height);
+		_startgame.setPosition(SCREEN_WIDTH / 2 - (_startgame.getGlobalBounds().width / 2), 550);
 
 		_background.setScale(targetSize1.x / _background.getLocalBounds().width, targetSize1.y / _background.getLocalBounds().height);
 		_background.setPosition(-360, -50);
@@ -38,13 +39,10 @@ namespace MESY {
                 _data->window.close();
             }
             
-            if(this->_data->input.IsSpriteClicked(this->_easy, sf::Mouse::Left, this->_data->window)) {
-                this->_data->machine.AddState(StateRef(new GameStates(_data, 1)),true);
-               }
-            
-            if(this->_data->input.IsSpriteClicked(this->_hard, sf::Mouse::Left, this->_data->window)) {
-                this->_data->machine.AddState(StateRef(new GameStates(_data, 2)),true);
-            }
+            if(this->_data->input.IsSpriteClicked(this->_startgame, sf::Mouse::Left, this->_data->window)) {
+				music.stop();
+                this->_data->machine.AddState(StateRef(new GameStates(_data)),true);
+			}		
         }
     }
     
@@ -55,8 +53,7 @@ namespace MESY {
     void MainMenuState::Draw(float dt) {
         _data->window.clear();
 		_data->window.draw(_background);
-        _data->window.draw(_easy);
-        _data->window.draw(_hard);
+        _data->window.draw(_startgame);
         _data->window.display();
     }
 }

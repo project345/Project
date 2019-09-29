@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "State.hpp"
 #include "Game.hpp"
 
@@ -13,8 +14,9 @@ namespace MESY {
         void Draw(float dt);
         
     private:
+		sf::Music music;
         GameDataRef _data;
         sf::Clock _clock;
-        sf::Sprite _easy, _hard, _background;
+        sf::Sprite _startgame, _background;
     };
 }

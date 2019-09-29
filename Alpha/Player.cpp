@@ -16,6 +16,7 @@ namespace MESY {
 
 		playerSprite.setTexture(this->_data->assets.GetTexture("Player"));
 		playerSprite.setTextureRect(sf::IntRect(0, 0, 24, 32));
+
 		explosionSprite.setTexture(this->_data->assets.GetTexture("Explosion"));
 		explosionSprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
 
@@ -56,8 +57,8 @@ namespace MESY {
 		return sf::Vector2i(xPosition, yPosition);
 	}
 
-	void Player::Explode(int newX, int newY) {
-			isExplosion = true;
+	void Player::Explode(int newX, int newY, bool life_is_zero) {
+			isExplosion = life_is_zero;
 			explosionSprite.setPosition((float)(((newX + 1) * TILE_WIDTH) - (32 / 2)), (float)(((newY + 2) * TILE_WIDTH) - (32 / 2)));
 	}
 
